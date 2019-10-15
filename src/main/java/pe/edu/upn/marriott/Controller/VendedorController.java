@@ -54,15 +54,15 @@ public class VendedorController {
 		return "redirect:/vendedor";
 	}
 	
-	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") String id,Model model) {
+	@GetMapping("/edit/{codVen}")
+	public String editar(@PathVariable("codVen") String id,Model model) {
 		try {
 			Optional<Vendedor> optional = vendedorService.findById(id);
 			
 			if(optional.isPresent()) {
 				model.addAttribute("vendedor", optional.get());
 			}else {
-				return "redirect:/vendedor";
+				return "redirect:/index";
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -80,8 +80,29 @@ public class VendedorController {
 			}
 		}catch(Exception e) {
 			model.addAttribute("dangerDel", "ERROR - Violacion contra el principio de integridad referencial");
-			return "/vendedor";
+			try {
+				model.addAttribute("vendedores", vendedores);
+			}catch(Exception ex) {
+				System.out.println(ex.getMessage());
+			}
+			return "/Vendedor/listado";
 		}
-		return "redirect:/vendedor";
+		return "index";
+	}
+	
+	@GetMapping("/info/{codVen}")
+	public String info(@PathVariable("codVen") String id, Model model) {
+		try {
+			Optional<Vendedor> optional = vendedorService.findById(id);
+			if(optional.isPresent()) {
+				model.addAttribute("vendedor",optional.get());
+			}else {
+				return "redirect:/vendedor";
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return "/Vendedor/info";
+		
 	}
 }

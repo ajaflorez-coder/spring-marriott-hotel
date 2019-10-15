@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<style>
+body {
+	background-color: #e6e6ff
+}
+</style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<div class="card">
+			<div class="card-header" align="center">
+				<h1>Nuevo Alquiler</h1>
+			</div>
+			<div class="card-body">
+
+				<form th:action="@{/alquiler/save}" th:object="${alquiler}"
+					method="post">
+
+					<div class="form-group">
+						<label for="codigo">Precio:</label> <input type="text"
+							class="form-control" placeholder="Precio del alquiler"
+							th:field="*{precio}">
+					</div>
+					<div class="form-group">
+						<label for="stock">Observacion:</label> <input type="text"
+							class="form-control" placeholder="Observacion de alquiler"
+							th:field="*{observacion}">
+					</div>
+					<div class="form-group">
+						<label for="stock">Estado:</label> <input type="text"
+							class="form-control" placeholder="Estado de alquiler"
+							th:field="*{estado}">
+					</div>
+					<div class="form-group">
+						<label for="vendedores">Vendedores:</label> <select
+							th:field="*{vendedor}" class="form-control">
+							<option th:each="vendedor : ${vendedores}"
+								th:value="${vendedor.id}" th:text="${vendedor.nombre}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="categorias">Clientes:</label> <select
+							th:field="*{cliente}" class="form-control">
+							<option th:each="cliente : ${clientes}"
+								th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="habitaciones">Habitaciones:</label> <select
+							th:field="*{habitacion}" class="form-control">
+							<option th:each="habitacion : ${habitaciones}"
+								th:value="${habitacion.id}" th:text="${habitacion.descripcion}"></option>
+						</select>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Grabar</button>
+					<a th:href="@{/vendedor}" class="btn btn-danger"> <i><i
+							class="fas fa-times-circle"></i></i> Cancelar
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -21,8 +21,12 @@ body {
 	<header th:replace="layout/layout :: header"></header>
 
 	<div class="container" align="left">
-		<h1 align="center">Lista de Medicos</h1>
-
+		<h1 align="center">Lista de Vendedores</h1>
+		
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert" align="center">
+					<span th:text="${dangerDel}" ></span>
+				</div>
+		
 		<div class="card text-center">
 			<div class="card-header"></div>
 			<div class="card-body">
@@ -47,6 +51,7 @@ body {
 							<td th:text="${vendedor.sueldo}"></td>
 							<td th:text="${vendedor.telefono}"></td>
 							<td>
+							<a th:href="@{'/vendedor/info/' + ${vendedor.id} }" class="btn btn-info"><i class="fas fa-info"></i></a>
 							<a th:href="@{'/vendedor/edit/' + ${vendedor.id}}" class="btn btn-warning"><i class="fas fa-edit"></i></a> 
 							<a th:href="@{'/vendedor/del/' + ${vendedor.id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a> 
 							</td>

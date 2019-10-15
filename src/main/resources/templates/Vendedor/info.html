@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<div class="card text-center">
+			<div class="card-header">
+				<h1>Informacion de Vendedor</h1>
+			</div>
+			<div class="card-body">
+
+				<form>
+
+					<div class="form-row" align=left>
+						<div class="form-group col-md-6">
+							<label for="codigo">Codigo: </label> <input type="text"
+								class="form-control" th:value="${vendedor.id}" readonly="readonly">
+						</div>
+
+						<div class="form-group col-md-6" align=left>
+							<label for="nombre">Nombre: </label> <input
+								type="text" class="form-control"
+								th:field="${vendedor.nombre}" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="form-group" align=left>
+						<label for="telefono">Telefono: </label> <input type="text"
+							class="form-control" th:field="${vendedor.telefono}"
+							readonly="readonly">
+					</div>
+
+					<div class="form-group" align=left>
+						<label for="observacion">Observacion: </label> <input type="text"
+							class="form-control" th:field="${vendedor.observacion}"
+							readonly="readonly">
+					</div>
+				</form>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Codigo Alquiler</th>
+							<th scope="col">Codigo Habitacion</th>
+							<th scope="col">Descripcion</th>
+							<th scope="col">Estado</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody th:each="alquiler : ${vendedor.alquileres}">
+						<tr>
+							<th scope="row" th:text="${alquiler.id}">1</th>
+							<td th:text="${alquiler.habitacion.id}">Mark</td>
+							<td th:text="${alquiler.habitacion.descripcion}">Otto</td>
+							<td th:text="${alquiler.estado}">Otto</td>
+						</tr>
+					</tbody>
+				</table>
+				<a th:href="@{/vendedor}" class="btn btn-dark"> <i> <i
+						class="fas fa-angle-left"></i></i> Regresar
+				</a>
+			</div>
+
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
