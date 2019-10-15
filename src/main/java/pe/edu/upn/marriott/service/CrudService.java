@@ -1,4 +1,4 @@
-package pe.edu.upn.marriott.services;
+package pe.edu.upn.marriott.service;
 
 import java.util.List;
 import java.util.Optional;
