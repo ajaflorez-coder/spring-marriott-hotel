@@ -56,4 +56,5 @@ public class Tipo {
 		this.habitaciones = habitaciones;
 	}
 
+	
 }
