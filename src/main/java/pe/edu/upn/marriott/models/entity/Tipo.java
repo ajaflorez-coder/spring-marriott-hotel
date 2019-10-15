@@ -13,7 +13,9 @@ import javax.persistence.Table;
 @Table(name = "tipos")
 public class Tipo {
 
-	@Id
+
+
+@Id
 	@Column(name = "id", length = 4)
 	private String id;
 	
@@ -56,4 +58,7 @@ public class Tipo {
 		this.habitaciones = habitaciones;
 	}
 
+
+
 }
+
