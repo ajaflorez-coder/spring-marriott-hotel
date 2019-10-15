@@ -41,7 +41,8 @@ public class Vendedor {
 	}
 	
 	public void addAlquiler(Alquiler alquiler) {
-		
+		alquiler.setVendedor(this);
+		this.alquileres.add(alquiler);
 	}
 
 	public String getId() {

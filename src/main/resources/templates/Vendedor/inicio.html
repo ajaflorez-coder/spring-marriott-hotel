@@ -20,11 +20,11 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">nombre</th>
-							<th scope="col">direccion</th>
-							<th scope="col">telefono</th>
-							<th scope="col">observacion</th>
-							<th scope="col">sueldo</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Direccion</th>
+							<th scope="col">Telefono</th>
+							<th scope="col">Observacion</th>
+							<th scope="col">Sueldo</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -32,29 +32,29 @@
 						<tr>
 							<th scope="row" th:text="${vendedor.id}">1</th>
 							<td th:text="${vendedor.nombre}">Mark</td>
-							<td th:text="${vendedor..direccion}">@mdo</td>
+							<td th:text="${vendedor.direccion}">@mdo</td>
 							<td th:text="${vendedor.telefono}">@mdo</td>
 							<td th:text="${vendedor.observacion}">@mdo</td>
 							<td th:text="${vendedor.sueldo}">@mdo</td>
 							
-							<!--  <td>
-								<a th:href="@{ '/medico/info/' + ${medico.id} }" class="btn btn-info"> 
+							 <td>
+								<a th:href="@{ '/vendedor/info/' + ${vendedor.id} }" class="btn btn-info"> 
 									<i class="fas fa-info"></i> 
 								</a>
-								<a th:href="@{ '/medico/edit/' + ${medico.id} }" class="btn btn-warning"> 
+								<a th:href="@{ '/vendedor/edit/' + ${vendedor.id} }" class="btn btn-warning"> 
 									<i class="fas fa-edit"></i> 
 								</a>
-								<a th:href="@{ '/medico/del/' + ${medico.id} }" class="btn btn-danger"> 
+								<a th:href="@{ '/vendedor/del/' + ${vendedor.id} }" class="btn btn-danger"> 
 									<i class="fas fa-trash-alt"></i> 
-								</a>							
-							</td>-->
+								</a>						
+							</td>
 						</tr>						
-					</tbody>-->
+					</tbody>
 				</table>
 
 			</div>
 			<div class="card-footer text-muted">
-				<a th:href="@{/alquiler/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Alquiler</a>
+				<a th:href="@{/vendedor/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Vendedor</a>
 			</div>
 		</div>
 

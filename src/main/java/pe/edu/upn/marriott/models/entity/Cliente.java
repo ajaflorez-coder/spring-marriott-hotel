@@ -49,8 +49,9 @@ public class Cliente {
 		alquileres=new ArrayList<>();
 	}
 	
-	public void addCliente(Cliente cliente) {
-		
+	public void addCliente(Alquiler alquileres) {
+		alquileres.setCliente(this);
+		this.alquileres.add(alquileres);
 	}
 
 	public Integer getId() {

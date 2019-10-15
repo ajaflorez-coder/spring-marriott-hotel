@@ -22,7 +22,7 @@ public class Habitacion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "numeroCamas")
+	@Column(name = "numero_Camas")
 	private Integer numeroCamas;
 	
 	@Column(name = "descripcion", length = 100)
@@ -47,7 +47,8 @@ public class Habitacion {
 	}
 	
 	public void addAlquiler(Alquiler alquiler) {
-		
+		alquiler.setHabitacion(this);
+		this.alquileres.add(alquiler);
 	}
 
 	public Integer getId() {

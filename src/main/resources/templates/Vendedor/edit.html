@@ -6,10 +6,10 @@
 
 	<div class="container">
 
-		<h1>Nuevo Vendedor</h1>
+		<h1>Edición del Vendedor</h1>
 
 		<div class="card">
-			<div class="card-header">Nuevo vendedor</div>
+			<div class="card-header">Edición vendedor</div>
 			<div class="card-body">
 
 				<form th:action="@{/vendedor/save}" th:object="${vendedor}" 
@@ -30,16 +30,16 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="direccion">Direccion:</label> 
+						<label for="direccion">Dirección:</label> 
 						<input type="text" class="form-control"
-							placeholder="Direccion del Vendedor"
+							placeholder="Dirección del Vendedor"
 							th:field ="*{direccion}">
 					</div>
 					
 					<div class="form-group">
 						<label for="telefono">Telefono:</label> 
 						<input type="text" class="form-control" 
-							placeholder="Telefono del Vendedor"
+							placeholder="Teléfono del Vendedor"
 							th:field="*{telefono}">
 					</div>
 					

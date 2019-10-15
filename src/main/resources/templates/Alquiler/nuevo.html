@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
 <body>
+	<header th:replace="layout/layout :: header"></header>
 
+	<div class="container">
+
+		<h1>Nuevo Alquiler</h1>
+
+		<div class="card">
+			<div class="card-header">Registro de nuevo alquiler</div>
+			<div class="card-body">
+
+				<form th:action="@{/alquiler/save}" th:object="${alquiler}" 
+					method="post">
+					
+					<div class="form-group">
+						<label for="precio">precio:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Precio de Alquiler"
+							th:field="*{precio}">
+					</div>
+					
+					<div class="form-group">
+						<label for="fechaEntrada">Fecha de Entrada:</label> 
+						<input type="date" class="form-control" 
+							placeholder="Fecha de Entrada"
+							th:field="*{fechaEntrada}">
+					</div>
+					
+					<div class="form-group">
+						<label for="fechaSalida">Fecha de Salida:</label> 
+						<input type="date" class="form-control" 
+							placeholder="Fecha de Entrada"
+							th:field="*{fechaSalida}">
+					</div>
+					
+					<div class="form-group">
+						<label for="estado">Estado:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Estado"
+							th:field="*{estado}">
+					</div>
+					
+					<div class="form-group">
+						<label for="observacion">Observacion:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Estado"
+							th:field="*{observacion}">
+					</div>
+					
+					<div class="form-group">
+						<label for="cliente">Cliente:</label> 
+						<select th:field="*{cliente}" class="form-control">
+					      <option th:each="cliente : ${clientes}"
+					      	th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+					    </select>
+						
+					</div>
+					
+				 	<div class="form-group">
+						<label for="vendedor">Vendedor:</label> 
+						<select th:field="*{vendedor}" class="form-control">
+					      <option th:each="vendedor : ${vendedores}"
+					      	th:value="${vendedor.id}" th:text="${vendedor.nombre}"></option>
+					    </select>
+						
+					</div>
+					
+					<div class="form-group">
+						<label for="habitacion">Habitacion:</label> 
+						<select th:field="*{habitacion}" class="form-control">
+					      <option th:each="habitacion : ${habitaciones}"
+					      	th:value="${habitacion.id}" th:text="${habitacion.tipo.nombre}"></option>
+					    </select>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Grabar
+					</button>
+					<a th:href="@{/alquiler}" class="btn btn-danger"> 
+						<i class="fas fa-undo"></i> Cancelar 
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>

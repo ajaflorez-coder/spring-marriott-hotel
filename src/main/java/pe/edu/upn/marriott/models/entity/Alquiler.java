@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 @Table(name = "alquileres")
 public class Alquiler {
@@ -25,10 +28,12 @@ public class Alquiler {
 	@Column(name = "precio", length = 50 , nullable = false)
 	private Float precio;
 	
+	@DateTimeFormat(iso=ISO.DATE)
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_entrada" , nullable = false)	
 	private Date fechaEntrada;
 	
+	@DateTimeFormat(iso=ISO.DATE)
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_salida" )	
 	private Date fechaSalida;
@@ -50,6 +55,8 @@ public class Alquiler {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="habitacion_id")
 	private Habitacion habitacion;
+	
+	
 
 	public Integer getId() {
 		return id;
