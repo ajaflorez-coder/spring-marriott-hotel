@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<div class="container">
+
+		<h1>Nuevo Alquiler</h1>
+
+		<div class="card">
+			<div class="card-header">Registro de nuevo alquiler</div>
+			<div class="card-body">
+
+				<form th:action="@{/vendedor/savehabitacion}" 
+					th:object="${habitacion}" method="post">
+					<div class="form-group">
+						<label for="numCamas">Num Camas:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Numero de camas"
+							th:field="*{habitacion}">
+					</div>
+					<div class="form-group">
+						<label for="descripcion">Descripcion:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Descripcion de la habitacon"
+							th:field="*{descripcion}">
+					</div>
+					<div class="form-group">
+						<label for="precio">Precio:</label> 
+						<input type="text" class="form-control" 
+							placeholder="precio"
+							th:field="*{precio}">
+					</div>					
+					<div class="form-group">
+						<label for="observacion">Observacion:</label> 
+						<input type="text" class="form-control"
+							placeholder="Obsevacion"
+							th:field ="*{observacion}">
+					</div>
+					
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Grabar
+					</button>
+					<a th:href="@{/medico}" class="btn btn-danger"> 
+						<i class="fas fa-undo"></i> Cancelar 
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+	
+	
+	
+</body>
+</html>
