@@ -38,6 +38,7 @@ public class MarriottApplicationTests {
 			Tipo tipo = new Tipo();			
 			tipo.setNombre("MATRIMONIAL");
 		
+			tipo = tipoRepository.save(tipo);
 			
 			Habitacion habitacion = new Habitacion();
 			habitacion.setNumeroCamas(2);
@@ -45,6 +46,7 @@ public class MarriottApplicationTests {
 			habitacion.setPrecio(500F);
 			habitacion.setObservacion("Máximo reserva 4 días");
 	
+			habitacion = habitacionRepository.save(habitacion);
 			
 			Alquiler alquiler = new Alquiler();
 			alquiler.setPrecio(700F);
@@ -53,8 +55,8 @@ public class MarriottApplicationTests {
 			alquiler.setEstado("1");
 			alquiler.setObservacion("Valido por temporada");
 			
-			tipo = tipoRepository.save(tipo);
-			habitacion = habitacionRepository.save(habitacion);
+			
+		
 			alquiler = alquilerRepository.save(alquiler);
 			
 			

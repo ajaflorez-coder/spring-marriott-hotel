@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "habitaciones")
 public class Habitacion {
@@ -41,9 +42,13 @@ public class Habitacion {
 	@OneToMany(mappedBy = "habitacion")
 	private List<Alquiler> alquiler;
 	
+	public void addAlquiler(Alquiler alquiler) {
+		alquiler.setHabitacion(this);
+		this.alquiler.add(alquiler);
+	}
 
 	public Habitacion() {		
-		this.alquiler = new ArrayList<>();
+		alquiler = new ArrayList<>();
 	}
 	
 	public Integer getId() {
