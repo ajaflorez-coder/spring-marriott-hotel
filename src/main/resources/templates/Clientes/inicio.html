@@ -20,7 +20,7 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Id</th>
+							<th scope="col">id</th>
 							<th scope="col">Documento</th>
 							<th scope="col">Nombre</th>
 							<th scope="col">FechaNacimiento</th>
@@ -30,23 +30,23 @@
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody th:each="clientes: ${clientes}">
+					<tbody th:each="clie: ${clientes}">
 						<tr>
-							<th scope="row" th:text="${clientes.id}">1</th>
-							<td th:text="${clientes.documento}">Mark</td>
-							<td th:text="${clientes.nombre}">Mark</td>
-							<td th:text="${cliente.FechaNacimiento}">Otto</td>
-							<td th:text="${cliente.LugarNacimiento}">@mdo</td>
-							<td th:text="${cliente.sexo}">@mdo</td>
-							<td th:text="${cliente.observacion}">@mdo</td>
+							<th scope="row" th:text="${clie.id}">1</th>
+							<td th:text="${clie.documento}">Mark</td>
+							<td th:text="${clie.nombre}">Mark</td>
+							<td th:text="${clie.FechaNacimiento}">Otto</td>
+							<td th:text="${clie.LugarNacimiento}">@mdo</td>
+							<td th:text="${clie.sexo}">@mdo</td>
+							<td th:text="${clie.observacion}">@mdo</td>
 							<td>
-								<a th:href="@{ '/clientes/info/' + ${clientes.id} }" class="btn btn-info"> 
+								<a th:href="@{ '/clientes/info/' + ${clie.id} }" class="btn btn-info"> 
 									<i class="fas fa-info"></i> 
 								</a>
-								<a th:href="@{ '/clientes/edit/' + ${clientes.id} }" class="btn btn-warning"> 
+								<a th:href="@{ '/clientes/edit/' + ${clie.id} }" class="btn btn-warning"> 
 									<i class="fas fa-edit"></i> 
 								</a>
-								<a th:href="@{ '/clientes/del/' + ${clientes.id} }" class="btn btn-danger"> 
+								<a th:href="@{ '/clientes/del/' + ${clie.id} }" class="btn btn-danger"> 
 									<i class="fas fa-trash-alt"></i> 
 								</a>							
 							</td>
