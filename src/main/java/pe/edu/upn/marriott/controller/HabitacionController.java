@@ -22,7 +22,7 @@ import pe.edu.upn.marriott.services.tipoService;
 
 @Controller
 @RequestMapping("/habitaciones")
-@SessionAttributes( {"habitacion", "paciente" } )
+@SessionAttributes( {"habitacion","tipo"} )
 public class HabitacionController {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class HabitacionController {
 	public String inicio(Model model) {
 		try {
 			List<Habitacion> habitaciones = habitacionService.findAll();
-			model.addAttribute("medicos", habitaciones);
+			model.addAttribute("habitaciones", habitaciones);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -75,7 +75,7 @@ public class HabitacionController {
 	@GetMapping("/nuevo")
 	public String nuevo(Model model) {
 		Habitacion habitacion = new Habitacion();
-		model.addAttribute("medico", habitacion);
+		model.addAttribute("habitaciones", habitacion);
 		try {
 			List<Tipo> tipos = 
 					tipoService.findAll();
@@ -121,34 +121,4 @@ public class HabitacionController {
 		return "/habitaciones/info";
 	}
 	
-	/*@GetMapping("/{id}/nuevotipo")
-	public String nuevoTipo(@PathVariable("id") int id, Model model) {
-		Tipo tipo = new Tipo();
-		try {
-			Optional<Habitacion> habitacion = habitacionService.findById(id);
-			if(habitacion.isPresent()) {
-				tipo.setHabitaciones(habitacion.get());
-				model.addAttribute("tipo", tipo);
-			} else {
-				return "redirect:/habitaciones";
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return "/habitaciones/nuevotipo";
-	}
-	
-	@PostMapping("/savetipo")
-	public String saveTipo(@ModelAttribute("tipo") Tipo tipo, 
-			Model model, SessionStatus status) {
-		try {
-			tipoService.save(tipo);
-			status.setComplete();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return "redirect:/habitaciones/info/" + ((Habitacion) tipo.getHabitaciones()).getId();
-	}
-	*/
 }
