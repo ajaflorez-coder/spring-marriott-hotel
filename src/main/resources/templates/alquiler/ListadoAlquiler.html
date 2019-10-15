@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Lista de Clientes del Hotel</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Lista de Clientes</div>
+			<div class="card-body">
+			
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+					<span th:text="${dangerDel}"></span>
+				</div>
+				
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Documento</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Fecha Nacimiento</th>
+							<th scope="col">Lugar Nacimiento</th>
+							<th scope="col">Sexo</th>
+							<th scope="col">Observacion</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody th:each="cliente: ${clientes}">
+						<tr>
+							<th scope="row" th:text="${cliente.id}">1</th>
+							<td th:text="${cliente.documento}">Mark</td>
+							<td th:text="${cliente.nombre}">Otto</td>
+							<td th:text="${cliente.fechaNacimiento}">@mdo</td>
+							<td th:text="${cliente.lugarNacimiento}">@mdo</td>
+							<td th:text="${cliente.sexo}">@mdo</td>
+							<td th:text="${cliente.observacion}">@mdo</td>
+							
+							<td>
+								<a th:href="@{ '/cliente/edit/' + ${cliente.id} }" class="btn btn-warning"> <i class="fas fa-edit"></i></a> 
+								<a th:href="@{ '/cliente/del/' + ${cliente.id} }" class="btn btn-danger"> <i class="fas fa-trash-alt"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/cliente/nuevo}" class="btn btn-primary"><i
+					class="fas fa-file-alt"></i> Nuevo Cliente</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
