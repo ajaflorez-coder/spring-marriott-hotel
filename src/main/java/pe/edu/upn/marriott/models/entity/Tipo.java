@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,16 +21,11 @@ public class Tipo {
 	@Column(name = "nombre", length = 30)
 	private String nombre;
 	
-	@OneToMany(mappedBy = "tipo")
+	@OneToMany(mappedBy = "tipo",fetch = FetchType.LAZY)
 	private List<Habitacion> habitaciones;
 	
 	public Tipo() {
-		this.habitaciones = new ArrayList<>();
-	}
-	
-	public void addHabitacion( Habitacion habitacion ) {
-		habitacion.setTipo( this );
-		this.habitaciones.add( habitacion );
+		habitaciones = new ArrayList<>();
 	}
 
 	public String getId() {
@@ -55,5 +51,6 @@ public class Tipo {
 	public void setHabitaciones(List<Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
-
+	
+	
 }
