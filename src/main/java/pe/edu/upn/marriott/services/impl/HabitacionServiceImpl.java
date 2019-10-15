@@ -31,24 +31,28 @@ public class HabitacionServiceImpl implements HabitacionService{
 		return habitacionRepository.findById(id);
 	}
 
+	@Transactional
 	@Override
 	public Habitacion save(Habitacion entity) throws Exception {
 		
 		return habitacionRepository.save(entity);
 	}
 
+	@Transactional
 	@Override
 	public Habitacion update(Habitacion entity) throws Exception {
 	
 		return habitacionRepository.save(entity);
 	}
 
+	@Transactional
 	@Override
 	public void deleteById(Integer id) throws Exception {
 		habitacionRepository.deleteById(id);
 		
 	}
 
+	@Transactional
 	@Override
 	public void deleteAll() throws Exception {
 		habitacionRepository.deleteAll();

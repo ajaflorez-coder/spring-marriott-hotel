@@ -3,22 +3,19 @@
 <head th:replace="layout/layout :: head"></head>
 
 <body>
-
 <header th:replace="layout/layout :: header"></header>
 
 	<div class="container">
 
-		<h1>Nuevo Cliente</h1>
+		<h1>Edicion del Cliente</h1>
 
 		<div class="card">
-			<div class="card-header">Registro de nuevo cliente</div>
+			<div class="card-header">Edicion Cliente</div>
 			<div class="card-body">
 
-				<form th:action="@{/cliente/save}" th:object="${cliente}"
-					method="post">
-					
-					
+				<form th:action="@{/cliente/save}" th:object="${cliente}" method="post">
 
+					
 					<div class="form-group">
 						<label for="documento">Documento</label><input type="text" 
 						class="control-label col-md-3" placeholder="DNI de cliente" 
@@ -35,7 +32,7 @@
 					
 					<div class="form-group">
 						<label for="fechaNacimiento">Fecha Nacimiento</label><input type="text" 
-						class="control-label col-md-3" placeholder="2019/12/25" 
+						class="control-label col-md-3" placeholder="2019/01/05" 
 						th:field="*{fechaNacimiento}" />
 						
 					</div>
@@ -62,7 +59,7 @@
 						
 					</div>
 					
-
+					
 					<button type="submit" class="btn btn-primary">
 						<i class="fas fa-save"></i> Grabar
 					</button>
@@ -78,6 +75,5 @@
 	</div>
 
 	<footer th:replace="layout/layout :: footer"></footer>
-	
 </body>
 </html>

@@ -16,12 +16,16 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upn.marriott.models.entity.Alquiler;
 import pe.edu.upn.marriott.models.entity.Cliente;
+import pe.edu.upn.marriott.models.entity.Habitacion;
+import pe.edu.upn.marriott.models.entity.Vendedor;
 import pe.edu.upn.marriott.services.AlquilerService;
 import pe.edu.upn.marriott.services.ClienteService;
+import pe.edu.upn.marriott.services.HabitacionService;
+import pe.edu.upn.marriott.services.VendedorService;
 
 @Controller
 @RequestMapping("/cliente")
-@SessionAttributes("cliente")
+@SessionAttributes({"cliente","alquiler"})
 public class ClienteController {
 
 	@Autowired
@@ -29,6 +33,12 @@ public class ClienteController {
 	
 	@Autowired
 	private AlquilerService alquilerService;
+	
+	@Autowired
+	private VendedorService vendedorService;
+	
+	@Autowired
+	private HabitacionService habitacionService;
 	
 	@GetMapping
 	public String inicio(Model model) {
@@ -41,7 +51,7 @@ public class ClienteController {
 		return "/cliente/inicio";
 	}
 	
-	@GetMapping("/edit{id}")
+	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable("id")int id,Model model) {
 		try {
 			Optional<Cliente>optional=clienteService.findById(id);
@@ -94,7 +104,7 @@ public class ClienteController {
 				clienteService.deleteById(id);
 			}
 		} catch (Exception e) {
-			 
+			model.addAttribute("dangerDel", "ERROR - Violación contra el principio de Integridad referencia");
 			 try {
 				List<Cliente>clientes=clienteService.findAll();
 				model.addAttribute("clientes", clientes);
@@ -104,5 +114,54 @@ public class ClienteController {
 			 return "/cliente/inicio";
 		}
 		return "redirect:/cliente";
+	}
+	@GetMapping("/info/{id}")
+	public String info(@PathVariable("id") int id, Model model) {
+		try {
+			Optional<Cliente> cliente = clienteService.findById(id);
+			if(cliente.isPresent()) {
+				model.addAttribute("cliente", cliente.get());
+			} else {
+				return "redirect:/cliente";
+			}
+		} catch (Exception e) {
+
+		}	
+		
+		return "/cliente/info";
+	}
+	
+	@GetMapping("/{id}/nuevoalquiler")
+	public String nuevoAlquiler(@PathVariable("id") int id, Model model) {
+		Alquiler alquiler = new Alquiler();
+		try {
+			Optional<Cliente> cliente = clienteService.findById(id);
+			if(cliente.isPresent()) {
+				List<Vendedor>vendedores=vendedorService.findAll();
+				List<Habitacion>habitaciones=habitacionService.findAll();
+				alquiler.setCliente(cliente.get());
+				
+				model.addAttribute("alquiler", alquiler);
+				model.addAttribute("habitaciones", habitaciones);
+				model.addAttribute("vendedores", vendedores);
+			} else {
+				return "redirect:/cliente";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "/cliente/nuevoalquiler";
+	}
+	@PostMapping("/savealquiler")
+	public String saveAlquiler(@ModelAttribute("alquiler") Alquiler alquiler, 
+			Model model, SessionStatus status) {
+		try {
+			alquilerService.save(alquiler);
+			status.setComplete();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "redirect:/cliente/info/" + alquiler.getCliente().getId();
 	}
 }

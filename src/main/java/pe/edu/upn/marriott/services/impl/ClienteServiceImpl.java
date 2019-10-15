@@ -30,24 +30,28 @@ public class ClienteServiceImpl implements ClienteService{
 		return clienteRepository.findById(id);
 	}
 
+	@Transactional
 	@Override
 	public Cliente save(Cliente entity) throws Exception {
 		
 		return clienteRepository.save(entity);
 	}
 
+	@Transactional
 	@Override
 	public Cliente update(Cliente entity) throws Exception {
 		
 		return clienteRepository.save(entity);
 	}
 
+	@Transactional
 	@Override
 	public void deleteById(Integer id) throws Exception {
 		clienteRepository.deleteById(id);
 		
 	}
 
+	@Transactional
 	@Override
 	public void deleteAll() throws Exception {
 		clienteRepository.deleteAll();
