@@ -21,14 +21,14 @@
 						<tr>
 							<th scope="col">id</th>
 							<th scope="col">Nombre</th>
-							<th scope="col">Dirección</th>
+							<th scope="col">Direccion</th>
 							<th scope="col">telefono</th>
-							<th scope="col">observacion</th>
-							<th scope="col">sueldo</th>
+							<th scope="col">Observacion</th>
+							<th scope="col">Sueldo</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody th:each="vendedor: ${vendedores}">
+					<tbody th:each="vendedor: ${vendedor}">
 						<tr>
 							<th scope="row" th:text="${vendedor.id}">1</th>
 							<td th:text="${vendedor.nombre}">Mark</td>

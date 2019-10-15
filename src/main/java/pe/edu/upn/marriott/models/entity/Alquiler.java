@@ -51,7 +51,7 @@ public class Alquiler {
 	@JoinColumn(name="habitacion_id")
 	private Habitacion habitacion;
 	
-	
+
 	
 
 	public Integer getId() {

@@ -19,42 +19,36 @@ public class ClienteServiceImpl  implements ClienteService{
 	@Transactional(readOnly = true)
 	@Override
 	public List<Cliente> findAll() throws Exception {
-		// TODO Auto-generated method stub
 		return clienteRepository.findAll();
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public Optional<Cliente> findById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
 		return clienteRepository.findById(id);
 	}
 
 	@Transactional
 	@Override
 	public Cliente save(Cliente entity) throws Exception {
-		// TODO Auto-generated method stub
 		return clienteRepository.save(entity);
 	}
 
 	@Transactional
 	@Override
 	public Cliente update(Cliente entity) throws Exception {
-		// TODO Auto-generated method stub
 		return clienteRepository.save(entity);
 	}
 
 	@Transactional
 	@Override
 	public void deleteById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
 		clienteRepository.deleteById(id);
 	}
 
 	@Transactional
 	@Override
 	public void deleteAll() throws Exception {
-		// TODO Auto-generated method stub
 		clienteRepository.deleteAll();
 	}
 

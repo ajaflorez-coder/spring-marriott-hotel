@@ -30,19 +30,19 @@ public class Vendedor {
 	private String observacion;
 	
 	@Column(name = "sueldo")
-	private Float sueldo;
+	private String sueldo;
 	
 	@OneToMany(mappedBy = "vendedor")
-	private List<Alquiler> alquileres;
+	private List<Alquiler> alquiler;
 	
 	
 	public Vendedor() {
-		this.alquileres= new ArrayList<>();
+		this.alquiler= new ArrayList<>();
 	}
 
 	public void addAlquiler( Alquiler alquiler ) {
 		alquiler.setVendedor(this);
-		this.alquileres.add(alquiler);
+		this.alquiler.add(alquiler);
 	}
 
 	public String getId() {
@@ -95,23 +95,23 @@ public class Vendedor {
 	}
 
 
-	public Float getSueldo() {
+	public String getSueldo() {
 		return sueldo;
 	}
 
 
-	public void setSueldo(Float sueldo) {
+	public void setSueldo(String sueldo) {
 		this.sueldo = sueldo;
 	}
 
 
-	public List<Alquiler> getAlquileres() {
-		return alquileres;
+	public List<Alquiler> getAlquiler() {
+		return alquiler;
 	}
 
 
-	public void setAlquileres(List<Alquiler> alquileres) {
-		this.alquileres = alquileres;
+	public void setAlquiler(List<Alquiler> alquiler) {
+		this.alquiler = alquiler;
 	}
 	
 	

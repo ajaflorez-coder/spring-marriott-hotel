@@ -39,15 +39,15 @@ public class Habitacion {
 	private String observacion;
 	
 	@OneToMany(mappedBy = "habitacion" , fetch = FetchType.LAZY)
-	private List<Alquiler> alquileres;
+	private List<Alquiler> alquiler;
 	
 	public Habitacion() {
-		this.alquileres= new ArrayList();
+		this.alquiler= new ArrayList();
 	}
 	
 	public void addAlquiler( Alquiler alquiler ) {
 		alquiler.setHabitacion(this);
-		this.alquileres.add(alquiler);
+		this.alquiler.add(alquiler);
 	}
 
 
@@ -113,13 +113,13 @@ public class Habitacion {
 
 
 	public List<Alquiler> getAlquiler() {
-		return alquileres;
+		return alquiler;
 	}
 
 
 
 	public void setAlquiler(List<Alquiler> alquiler) {
-		this.alquileres = alquiler;
+		this.alquiler = alquiler;
 	}
 
 
