@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Información del Vendedor</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Información del Vendedor</div>
+			<div class="card-body">
+				
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+  					<span th:text="${dangerDel}"></span>
+				</div>
+			
+			
+				<form>
+				
+				 <div class="form-group row">
+				    <label for="id" class="col-sm-2 col-form-label">Id :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${vendedor.id}" class="form-control-plaintext" >
+				    </div>
+				  </div>	
+				  <div class="form-group row">
+				    <label for="nombre" class="col-sm-2 col-form-label">Nombre :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${vendedor.nombre}" class="form-control-plaintext" >
+				    </div>
+				  </div>				  
+				
+				  </div>
+				  <div class="form-group row">
+				    <label for="direccion" class="col-sm-2 col-form-label">Direccion :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${vendedor.direccion}" class="form-control-plaintext" >
+				    </div>
+				  </div>
+				  
+				  <div class="form-group row">
+				    <label for="telefono" class="col-sm-2 col-form-label">Telefono :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${vendedor.telefono}" class="form-control-plaintext" >
+				    </div>
+				  </div>
+				  
+				  <div class="form-group row">
+				    <label for="observacion" class="col-sm-2 col-form-label">Observacion :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${vendedor.nombre}" class="form-control-plaintext" >
+				    </div>
+				  </div>	
+				  
+				  <div class="form-group row">
+				    <label for="sueldo" class="col-sm-2 col-form-label">Sueldo :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${vendedor.sueldo}" class="form-control-plaintext" >
+				    </div>
+				  </div>	
+				</form>
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">id</th>
+							<th scope="col">precio</th>
+							<th scope="col">fecha_entrada</th>
+							<th scope="col">fecha_salida</th>
+							<th scope="col">estado</th>
+							<th scope="col">observacion</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody th:each="alquiler: ${vendedor.alquiler}">
+						<tr>
+							<th scope="row" th:text="${alquiler.id}">1</th>
+							<td th:text="${alquiler.precio}">Mark</td>
+							<td th:text="${alquiler.fecha_entrada}">Otto</td>
+							<td th:text="${alquiler.fecha_salida}">@mdo</td>
+							<td th:text="${alquiler.estado}">@mdo</td>
+							<td th:text="${alquiler.observacion}">@mdo</td>
+							<td>
+								<a th:href="@{ '/vendedor/info/' + ${alquiler.id} }" class="btn btn-info"> 
+									<i class="fas fa-info"></i> 
+								</a>
+								<a th:href="@{ '/vendedor/edit/' + ${alquiler.id} }" class="btn btn-warning"> 
+									<i class="fas fa-edit"></i> 
+								</a>
+								<a th:href="@{ '/vendedor/del/' + ${alquiler.id} }" class="btn btn-danger"> 
+									<i class="fas fa-trash-alt"></i> 
+								</a>							
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/vendedor}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Vendedores</a>
+				<a th:href="@{'/vendedor/' + ${vendedor.id} + '/nuevoalquiler/'}" 
+					class="btn btn-primary">
+					<i class="fas fa-file-alt"></i> Nuevo alquiler</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+

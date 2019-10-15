@@ -21,15 +21,15 @@ public class Tipo {
 	private String nombre;
 	
 	@OneToMany(mappedBy = "tipo")
-	private List<Habitacion> habitaciones;
+	private List<Habitacion> habitacion;
 	
 	public Tipo() {
-		this.habitaciones = new ArrayList<>();
+		this.habitacion = new ArrayList<>();
 	}
 	
 	public void addHabitacion( Habitacion habitacion ) {
 		habitacion.setTipo( this );
-		this.habitaciones.add( habitacion );
+		this.habitacion.add( habitacion );
 	}
 
 	public String getId() {
@@ -49,11 +49,11 @@ public class Tipo {
 	}
 
 	public List<Habitacion> getHabitaciones() {
-		return habitaciones;
+		return habitacion;
 	}
 
 	public void setHabitaciones(List<Habitacion> habitaciones) {
-		this.habitaciones = habitaciones;
+		this.habitacion = habitaciones;
 	}
 
 }
