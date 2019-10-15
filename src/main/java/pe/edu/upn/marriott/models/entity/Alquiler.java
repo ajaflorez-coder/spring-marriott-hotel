@@ -49,6 +49,8 @@ public class Alquiler {
 	@JoinColumn(name = "habitacion_id")
 	private Habitacion habitacion;
 
+	public Alquiler() {}
+	
 	public Alquiler(Integer id, Float precio, Date fechanacimiento, Date fechasalida, String estado, String observacion,
 			Vendedor vendedor, Cliente cliente, Habitacion habitacion) {
 		super();
