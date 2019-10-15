@@ -1,5 +1,6 @@
 package pe.edu.upn.marriott.models.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -24,7 +25,7 @@ public class Cliente {
 	
 	@Column(name = "nombre", length = 60)
 	private String nombre;
-	
+	 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_Nacimiento")	
 	private Date fechaNacimiento;
@@ -39,9 +40,68 @@ public class Cliente {
 	private String observacion;
 	
 	
-	
-	public Cliente() {
-		
+
+	public Integer getId() {
+		return id;
 	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getLugarNacimiento() {
+		return lugarNacimiento;
+	}
+
+	public void setLugarNacimiento(String lugarNacimiento) {
+		this.lugarNacimiento = lugarNacimiento;
+	}
+
+	public char getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(char sexo) {
+		this.sexo = sexo;
+	}
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+
+
+
+	
+	
+	
 	
 }

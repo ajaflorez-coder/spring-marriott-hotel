@@ -1,5 +1,7 @@
 package pe.edu.upn.marriott.models.entity;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,11 +38,6 @@ public class Habitacion {
 	
 	
 	
-	public Habitacion() {
-		
-	}
-
-
 
 	public Tipo getTipo() {
 		return tipo;
@@ -49,6 +46,79 @@ public class Habitacion {
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
+
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+	public Integer getNumeroCamas() { 
+		return numeroCamas;
+	}
+
+
+
+	public void setNumeroCamas(Integer numeroCamas) {
+		this.numeroCamas = numeroCamas;
+	}
+
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+
+
+	public Float getPrecio() {
+		return precio;
+	}
+
+
+
+	public void setPrecio(Float precio) {
+		this.precio = precio;
+	}
+
+
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Habitacion getVendedor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
 	
 	
 }
