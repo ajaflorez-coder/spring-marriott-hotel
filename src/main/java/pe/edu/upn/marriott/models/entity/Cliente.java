@@ -29,15 +29,15 @@ public class Cliente {
 	@Column(name = "nombre", length = 60)
 	private String nombre;
 	
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name = "fecha_Nacimiento")	
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	
 	@Column(name = "lugar_Nacimiento", length = 50)
 	private String lugarNacimiento;
 	
-	@Column(name = "sexo", length = 1)
-	private char sexo;
+	@Column(name = "sexo", length = 50)
+	private String sexo;
 	
 	@Column(name = "observacion", length = 100)
 	private String observacion;
@@ -83,13 +83,17 @@ public class Cliente {
 
 
 
-	public Date getFechaNacimiento() {
+
+
+
+
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
 
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -106,14 +110,13 @@ public class Cliente {
 	}
 
 
-
-	public char getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
 
 
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 

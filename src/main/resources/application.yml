@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://localhost:1433;databasename=marriott
     username: sa
-    password: 12345678
+    password: 12345
   jpa:
     database: sql-server
     hibernate:

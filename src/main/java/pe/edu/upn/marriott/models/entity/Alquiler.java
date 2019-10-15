@@ -31,6 +31,7 @@ public class Alquiler {
 	private Date fecha_entrada;
 	
 	@Column(name = "fecha_salida")
+	@Temporal(TemporalType.DATE)
 	private Date fecha_salida;
 	
 	@Column(name = "estado")

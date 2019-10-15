@@ -7,12 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upn.demo.model.entity.Especialidad;
-import pe.edu.upn.demo.model.entity.Medico;
 import pe.edu.upn.marriott.models.entity.Alquiler;
 import pe.edu.upn.marriott.models.entity.Cliente;
 import pe.edu.upn.marriott.services.AlquilerService;
@@ -62,7 +63,20 @@ public class ClienteController {
 			// TODO: handle exception
 		}
 		
-		return "/medico/edit";
+		return "/cliente/edit";
+	}
+	
+	@PostMapping("/save")
+	public String save(@ModelAttribute("cliente") Cliente cliente, 
+			Model model, SessionStatus status) {
+		try {
+			clienteservice.save(cliente);
+			status.setComplete();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "redirect:/cliente";
 	}
 	
 	@GetMapping("/new")
@@ -76,7 +90,7 @@ public class ClienteController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "/medico/nuevo";
+		return "/cliente/new";
 	}
 	@GetMapping("/del/{id}")
 	public String eliminar(@PathVariable("id") int id, Model model) {
@@ -97,6 +111,22 @@ public class ClienteController {
 			return "/cliente/inicia";
 		}
 		return "redirect:/cliente";
+	}
+	
+	@GetMapping("/info/{id}")
+	public String info(@PathVariable("id") int id, Model model) {
+		try {
+			Optional<Cliente> cliente = clienteservice.findById(id);
+			if(cliente.isPresent()) {
+				model.addAttribute("cliente", cliente.get());
+			} else {
+				return "redirect:/cliente";
+			}
+		} catch (Exception e) {
+
+		}	
+		
+		return "/cliente/info";
 	}
 }
 	
