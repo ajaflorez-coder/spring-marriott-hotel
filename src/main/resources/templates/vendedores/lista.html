@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Lista de vendedores</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Lista de vendedores</div>
+			<div class="card-body">
+				
+			
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Dirección</th>
+							<th scope="col">telefono</th>
+							<th scope="col">Obsevacion</th>
+							<th scope="col">Telefono</th>
+						</tr>
+					</thead>
+					<tbody th:each="vendedor: ${vendedoress}">
+						<tr>
+							<th scope="row" th:text="${vendedor.id}">1</th>
+							<td th:text="${vendedor.nombre}">Mark</td>
+							<td th:text="${vendedor.direccion}">@mdo</td>
+							<td th:text="${vendedor.telefono}">@mdo</td>
+							<td th:text="${vendedor.obsevacion}">Otto</td>
+							<td th:text="${vendedor.sueldo}">Otto</td>
+							<td>
+								<a th:href="@{ '/vendedor/info/' + ${vendedor.id} }" class="btn btn-info"> 
+									<i class="fas fa-info"></i> 
+								</a>
+								<a th:href="@{ '/vendedor/edit/' + ${vendedor.id} }" class="btn btn-warning"> 
+									<i class="fas fa-edit"></i> 
+								</a>
+								<a th:href="@{ '/vendedor/del/' + ${vendedor.id} }" class="btn btn-danger"> 
+									<i class="fas fa-trash-alt"></i> 
+								</a>							
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/vendedor/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Vendedor</a>
+			</div>
+		</div>
+
+
+
+</body>
+</html>
