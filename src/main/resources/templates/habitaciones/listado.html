@@ -46,12 +46,13 @@
 							<td th:text="${habitacion.numeroCamas}">Mark</td>
 							<td th:text="${habitacion.descripcion}">Otto</td>
 							<td th:text="${habitacion.precio}">@mdo</td>
+							<td th:text="${habitacion.tipo.nombre}">@mdo</td>
 							<td th:text="${habitacion.observacion}">@mdo</td>
 
 							<td>
-								<a th:href="@{ '/medico/info/' + ${habitacion.id} }" class="btn btn-info"> <i class="fas fa-info"></i></a> 
-								<a th:href="@{ '/medico/edit/' + ${habitacion.id} }" class="btn btn-warning"> <i class="fas fa-edit"></i></a> 
-								<a th:href="@{ '/medico/del/' + ${habitacion.id} }" class="btn btn-danger"> <i class="fas fa-trash-alt"></i></a>
+								<a th:href="@{ '/habitaciones/info/' + ${habitacion.id} }" class="btn btn-info"> <i class="fas fa-info"></i></a> 
+								<a th:href="@{ '/habitaciones/edit/' + ${habitacion.id} }" class="btn btn-warning"> <i class="fas fa-edit"></i></a> 
+								<a th:href="@{ '/habitaciones/del/' + ${habitacion.id} }" class="btn btn-danger"> <i class="fas fa-trash-alt"></i></a>
 							</td>
 						</tr>
 					</tbody>
@@ -59,8 +60,8 @@
 
 			</div>
 			<div class="card-footer text-muted">
-				<a th:href="@{/medico/nuevo}" class="btn btn-primary"><i
-					class="fas fa-file-alt"></i> Nuevo Medico</a>
+				<a th:href="@{/habitaciones/nuevo}" class="btn btn-primary"><i
+					class="fas fa-file-alt"></i> Nueva Habitacion</a>
 			</div>
 		</div>
 

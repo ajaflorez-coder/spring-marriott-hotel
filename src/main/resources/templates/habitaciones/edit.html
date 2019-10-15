@@ -6,45 +6,52 @@
 
 	<div class="container">
 
-		<h1>Edición del Médico</h1>
+		<h1>Editar Habitacion</h1>
 
 		<div class="card">
-			<div class="card-header">Edición médico</div>
+			<div class="card-header">Edicion de una Habitacion</div>
 			<div class="card-body">
 
-				<form th:action="@{/medico/save}" th:object="${medico}" 
+				<form th:action="@{/habitaciones/save}" th:object="${habitaciones}" 
 					method="post">
 					<div class="form-group">
-						<label for="nombre">Nombre:</label> 
+						<label for="numeroCamas">Numero de camas:</label> 
 						<input type="text" class="form-control" 
-							placeholder="Nombre de Médico"
-							th:field="*{nombre}">
+							placeholder="Numero de Camas"
+							th:field="*{numeroCamas}">
 					</div>
 					<div class="form-group">
-						<label for="especialidad">Especialidad:</label> 
-						<select th:field="*{especialidad}" class="form-control">
-					      <option th:each="especial : ${especialidades}"
-					      	th:value="${especial.id}" th:text="${especial.nombre}"></option>
+						<label for="tipo">Tipo:</label> 
+						<select th:field="*{tipo}" class="form-control">
+					      <option th:each="tipos : ${tipos}"
+					      	th:value="${tipos.id}" th:text="${tipos.nombre}"></option>
 					    </select>
 						
 					</div>
 					<div class="form-group">
-						<label for="direccion">Dirección:</label> 
+						<label for="descripcion">Descripcion:</label> 
 						<input type="text" class="form-control"
-							placeholder="Dirección del Médico"
-							th:field ="*{direccion}">
+							placeholder="Descripcion de la habitacion"
+							th:field ="*{descripcion}">
 					</div>
 					<div class="form-group">
-						<label for="telefono">Telefono:</label> 
+						<label for="precio">Precio:</label> 
 						<input type="text" class="form-control" 
-							placeholder="Teléfono de Médico"
-							th:field="*{telefono}">
+							placeholder="Precio de Habitacion"
+							th:field="*{precio}">
+					</div>
+					
+					<div class="form-group">
+						<label for="observacion">Observacion:</label> 
+						<input type="text" class="form-control" 
+							placeholder="observacion de Habitacion"
+							th:field="*{observacion}">
 					</div>
 					
 					<button type="submit" class="btn btn-primary">
 						<i class="fas fa-save"></i> Grabar
 					</button>
-					<a th:href="@{/medico}"
+					<a th:href="@{/habitaciones}"
 						class="btn btn-danger">
 						<i class="fas fa-undo-alt"></i> Cancelar
 					</a>

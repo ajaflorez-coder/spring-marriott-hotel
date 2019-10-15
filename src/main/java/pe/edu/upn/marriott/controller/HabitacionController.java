@@ -3,6 +3,8 @@ package pe.edu.upn.marriott.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,24 +16,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-
+import pe.edu.upn.marriott.models.entity.Alquiler;
+import pe.edu.upn.marriott.models.entity.Cliente;
 import pe.edu.upn.marriott.models.entity.Habitacion;
 import pe.edu.upn.marriott.models.entity.Tipo;
+import pe.edu.upn.marriott.models.entity.Vendedor;
+import pe.edu.upn.marriott.services.AlquilerServices;
+import pe.edu.upn.marriott.services.ClienteServices;
 import pe.edu.upn.marriott.services.HabitacionServices;
 import pe.edu.upn.marriott.services.TipoServices;
+import pe.edu.upn.marriott.services.VendedorServices;
 
 @Controller
 @RequestMapping("/habitaciones")
-@SessionAttributes({"habitacion"})
+@SessionAttributes({"habitaciones","alquiler"})
 public class HabitacionController {
 	
 	
 	@Autowired
 	private HabitacionServices habitacionServices;
+
+	@Autowired
+	private AlquilerServices alquilerServices;
 	
 	@Autowired
 	private TipoServices tipoServices;
-
+	@Autowired
+	private ClienteServices clienteServices;
+	
+	@Autowired
+	private VendedorServices vendedorServices;
+	
+	
+	
 	@GetMapping
 	public String inicio (Model model) {
 	
@@ -58,7 +75,7 @@ public class HabitacionController {
 				List<Tipo> tipos 
 					= tipoServices.findAll();
 				
-				model.addAttribute("habitacion", optional.get());
+				model.addAttribute("habitaciones", optional.get());
 				model.addAttribute("tipos", tipos);
 			} else {
 				return "redirect:/habitaciones";
@@ -70,7 +87,7 @@ public class HabitacionController {
 		return "/habitaciones/edit";
 	}
 	@PostMapping("/save")
-	public String save(@ModelAttribute("habitacion") Habitacion habitacion, 
+	public String save(@ModelAttribute("habitaciones") Habitacion habitacion, 
 			Model model, SessionStatus status) {
 		try {
 			habitacionServices.save(habitacion);
@@ -79,6 +96,8 @@ public class HabitacionController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+	
 		return "redirect:/habitaciones";
 	}
 	
@@ -86,7 +105,7 @@ public class HabitacionController {
 	public String nuevo(Model model) {
 		Habitacion habitacion = new Habitacion();
 		
-		model.addAttribute("habitacion", habitacion);
+		model.addAttribute("habitaciones", habitacion);
 		
 		try {
 			List<Tipo> tipos = tipoServices.findAll();
@@ -124,7 +143,7 @@ public class HabitacionController {
 			Optional<Habitacion> habitaciones= habitacionServices.findById(id);
 			
 			if(habitaciones.isPresent()) {
-				model.addAttribute("habitacion", habitaciones.get());
+				model.addAttribute("habitaciones", habitaciones.get());
 			}else {
 				return "redirect:/habitaciones";
 			}
@@ -134,37 +153,62 @@ public class HabitacionController {
 		return "/habitaciones/info";
 	}
 	
-	/*@GetMapping("/{id}/nuevopaciente")
-	public String nuevoPaciente(@PathVariable("id") int id, Model model) {
-		Paciente paciente = new Paciente();
+	
+	@GetMapping("/nuevocliente")
+	public String nuevocliente(Model model) {
+		Cliente cliente = new Cliente();
+		
+		model.addAttribute("clientes", cliente);
 		
 		try {
-			Optional<Medico> medico = medicoService.findById(id);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "/habitaciones/nuevocliente";
+	}
+	
+	@GetMapping("/{id}/nuevoalquiler")
+	public String nuevoAlquiler(@PathVariable("id") int id, Model model) {
+		Alquiler alquiler = new Alquiler();
+		
+		try {
+			Optional<Habitacion> habitacion= habitacionServices.findById(id);
 			
-			if(medico.isPresent()) {
-				paciente.setMedico(medico.get());
-				model.addAttribute("paciente", paciente);
+			List<Cliente> clientes = clienteServices.findAll();
+			model.addAttribute("clientes", clientes);
+			
+			List<Vendedor> vendedores= vendedorServices.findAll();
+			model.addAttribute("vendedores", vendedores);
+
+			if(habitacion.isPresent()) {
+				
+				alquiler.setHabitaciones(habitacion.get());
+				model.addAttribute("alquileres", alquiler);
 			}else {
-				return "redirect:/medico";
+				return "redirect:/habitaciones";
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "/medico/nuevopaciente";
+		return "/habitaciones/nuevoalquiler";
 	}
 	
-	@PostMapping("/savepaciente")
-	public String savePaciente(@ModelAttribute("paciente") Paciente paciente, 
+	@PostMapping("/savealquiler")
+	public String saveAlquiler(@ModelAttribute("alquileres") Alquiler alquiler,Habitacion habitacion, 
 			Model model, SessionStatus status) {
 		try {
-			pacienteService.save(paciente);
+			alquilerServices.save(alquiler);
 			status.setComplete();
 			
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			
+			System.out.println("Ocurrio un error");
+		
 		}
-		return "redirect:/medico/info/" + paciente.getMedico().getId();
-	}*/
+		return "redirect:/habitaciones/info/"+alquiler.getHabitaciones().getId() ;
+	}
 	
 	
 }

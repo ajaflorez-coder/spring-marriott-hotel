@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Nuevo Alquiler</h1>
+
+		<div class="card">
+			<div class="card-header">Registro del Alquiler</div>
+			<div class="card-body">
+
+				<form th:action="@{/habitaciones/savealquiler}" th:object="${alquileres}" 
+					method="post">
+
+					<div class="form-group">
+						<label for="precio">Precio:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Precio del alquiler"
+							th:field="*{precio}">
+					</div>
+					<div class="form-group">
+						<label for="fecha_entrada">fecha de entrada:</label> 
+						<input type="date" class="form-control" 
+							placeholder="fecha de Entrada"
+							th:field="*{fecha_entrada}">
+							
+					<div class="form-group">
+						<label for="fecha_salida">fecha de salida:</label> 
+						<input type="date" class="form-control" 
+							placeholder="fecha de Salida"
+							th:field="*{fecha_salida}">
+					</div>
+					<div class="form-group">
+						<label for="estado">Estado:</label> 
+						<input type="text" class="form-control"
+							placeholder="Estado de la Habitacion"
+							th:field ="*{estado}">
+					</div>
+					<div class="form-group">
+						<label for="observacion">Observacion:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Observacion sobre el alquiler de la habitacion"
+							th:field="*{observacion}">
+					</div>
+					
+				<!-- 		<div class="form-group">
+						<label for="vendedor">Codigo del Vendedor:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Codigo del Vendedor"
+							th:field="*{vendedor}">
+					</div> 
+				-->
+					
+					</div>
+					<div class="form-group">
+						<label for="vendedor">Codigo del Vendedor:</label> 
+						<select th:field="*{vendedor}" class="form-control">
+					      <option th:each="vendedoress : ${vendedores}"
+					      	th:value="${vendedoress.id}" th:text="${vendedoress.id}"></option>
+					    </select>
+					
+					
+					
+					
+					
+			<!-- 			<div class="form-group">
+						<label for="clientes">Codigo del Cliente:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Codigo del Cliente"
+							th:field="*{clientes}">
+					</div>
+			 -->
+					
+					</div>
+					<div class="form-group">
+						<label for="clientes">Escoja al Cliente:</label> 
+						<select th:field="*{clientes}" class="form-control">
+					      <option th:each="clientess : ${clientes}"
+					      	th:value="${clientess.id}" th:text="${clientess.nombre}"></option>
+					    </select>
+					</div>
+					
+				
+					<div class="form-group">
+						<label for="habitaciones">Codigo de la Habitacion:</label> 
+						<input disabled=disabled type="text" class="form-control" 
+							placeholder="Codigo de la Habitacion"
+							th:field="*{habitaciones}">
+					</div>
+			
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Grabar
+					</button>
+					<a th:href="@{/habitaciones}"
+						class="btn btn-danger">
+						<i class="fas fa-undo-alt"></i> Cancelar
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
