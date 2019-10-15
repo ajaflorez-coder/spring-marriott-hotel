@@ -31,6 +31,7 @@ public class Tipo {
 		habitacion.setTipo( this );
 		this.habitaciones.add( habitacion );
 	}
+	
 
 	public String getId() {
 		return id;

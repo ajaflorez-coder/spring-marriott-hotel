@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Lista de habitaciones del hotel</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Lista de habitaciones</div>
+			<div class="card-body">
+				
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+  					<span th:text="${dangerDel}"></span>
+				</div>
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Camas</th>
+							<th scope="col">Descripcion</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Tipo</th>
+							<th scope="col">Observacion</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody th:each="habitacion: ${habitaciones}">
+						<tr>
+							<th scope="row" th:text="${medico.id}">1</th>
+							<td th:text="${habitacion.camas}">Mark</td>
+							<td th:text="${habitacion.descripcion}">Otto</td>
+							<td th:text="${habitacion.precio}">@mdo</td>
+							<td th:text="${habitacion.tipo}">@mdo</td>
+							<td>
+								<a th:href="@{ '/habitacion/info/' + ${habitacion.id} }" class="btn btn-info"> 
+									<i class="fas fa-info"></i> 
+								</a>
+								<a th:href="@{ '/habitacion/edit/' + ${habitacion.id} }" class="btn btn-warning"> 
+									<i class="fas fa-edit"></i> 
+								</a>
+								<a th:href="@{ '/habitacion/del/' + ${habitacion.id} }" class="btn btn-danger"> 
+									<i class="fas fa-trash-alt"></i> 
+								</a>							
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/habitacion/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nueva habitacion</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
