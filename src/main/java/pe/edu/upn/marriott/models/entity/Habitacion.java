@@ -38,13 +38,18 @@ public class Habitacion {
 	@Column(name = "observacion", length = 100)
 	private String observacion;
 	
-	@OneToMany(mappedBy = "habitaciones", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "habitacion", fetch = FetchType.LAZY)
 	private List<Alquiler> alquileres;
 	
 	public Habitacion() {
-		alquileres = new ArrayList<>();
+		this.alquileres = new ArrayList<>();
 	}
 
+	public void addAlquiler(Alquiler alquiler) {
+		alquiler.setHabitacion(this);
+		this.alquileres.add(alquiler);
+	}
+	
 	public Integer getId() {
 		return id;
 	}

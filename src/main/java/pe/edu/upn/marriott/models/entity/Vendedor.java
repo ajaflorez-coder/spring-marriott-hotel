@@ -33,11 +33,16 @@ public class Vendedor {
 	@Column(name = "sueldo")
 	private Float sueldo;
 	
-	@OneToMany(mappedBy = "vendedores", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY)
 	private List<Alquiler> alquileres;
 	
 	public Vendedor() {
-		alquileres = new ArrayList<>();
+		this.alquileres = new ArrayList<>();
+	}
+	
+	public void addAlquiler(Alquiler alquiler) {
+		alquiler.setVendedor(this);
+		this.alquileres.add(alquiler);
 	}
 
 	public String getId() {

@@ -6,7 +6,7 @@
 
 	<div class="container">
 
-		<h1>Lista de Vendedores</h1>
+		<h1>Lista de vendedores</h1>
 
 		<div class="card text-center">
 			<div class="card-header">Lista de vendedores</div>
@@ -25,19 +25,17 @@
 							<th scope="col">Telefono</th>
 							<th scope="col">Observacion</th>
 							<th scope="col">Sueldo</th>
-							<th scope="col">Alquileres</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody th:each="vendedor: ${vendedores}">
 						<tr>
 							<th scope="row" th:text="${vendedor.id}">1</th>
-							<td th:text="${vendedor.nombre}">Mark</td>
-							<td th:text="${vendedor.direccion}"> Av. Arica 159 </td>
-							<td th:text="${vendedor.telefono}">@mdo</td>
-							<td th:text="${vendedor.observacion}">@mdo</td>
-							<td th:text="${vendedor.sueldo}">@mdo</td>
-							<td th:text="${vendedor.alquileres.id}">@mdo</td>
+							<td th:text="${vendedor.nombre}"></td>
+							<td th:text="${vendedor.direccion}"></td>
+							<td th:text="${vendedor.telefono}"></td>
+							<td th:text="${vendedor.observacion}"></td>
+							<td th:text="${vendedor.sueldo}"></td>
 							<td>
 								<a th:href="@{ '/vendedor/info/' + ${vendedor.id} }" class="btn btn-info"> 
 									<i class="fas fa-info"></i> 
@@ -55,7 +53,7 @@
 
 			</div>
 			<div class="card-footer text-muted">
-				<a th:href="@{/vendedor/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Vendedor </a>
+				<a th:href="@{/vendedor/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Vendedor</a>
 			</div>
 		</div>
 

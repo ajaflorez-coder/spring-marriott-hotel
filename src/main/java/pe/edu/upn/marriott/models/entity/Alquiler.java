@@ -25,11 +25,11 @@ public class Alquiler {
 	@Column(name = "precio", length = 10,nullable = false)
 	private String precio;
 	
-	@Column(name = "fec_entrada")
+	@Column(name = "fecha_entrada")
 	@Temporal(TemporalType.DATE)
 	private Date fecha_entrada;
 	
-	@Column(name = "fec_salida")
+	@Column(name = "fecha_salida")
 	@Temporal(TemporalType.DATE)
 	private Date fecha_salida;
 	
@@ -41,15 +41,15 @@ public class Alquiler {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "habitacion_id")
-	private Habitacion habitaciones;
+	private Habitacion habitacion;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "vendedor_id")
-	private Vendedor vendedores;
+	private Vendedor vendedor;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_id")
-	private Cliente clientes;
+	private Cliente cliente;
 
 	public Integer getId() {
 		return id;
@@ -99,29 +99,31 @@ public class Alquiler {
 		this.observacion = observacion;
 	}
 
-	public Habitacion getHabitaciones() {
-		return habitaciones;
+	public Habitacion getHabitacion() {
+		return habitacion;
 	}
 
-	public void setHabitaciones(Habitacion habitaciones) {
-		this.habitaciones = habitaciones;
+	public void setHabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
 	}
 
-	public Vendedor getVendedores() {
-		return vendedores;
+	public Vendedor getVendedor() {
+		return vendedor;
 	}
 
-	public void setVendedores(Vendedor vendedores) {
-		this.vendedores = vendedores;
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
 	}
 
-	public Cliente getClientes() {
-		return clientes;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setClientes(Cliente clientes) {
-		this.clientes = clientes;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
+
+	
 	
 	
 }
