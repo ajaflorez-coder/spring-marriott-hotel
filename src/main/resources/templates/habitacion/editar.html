@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card text-center">
+			<div class="card-header">Actualizar Medico</div>
+			<div class="card-body-responsive">
+				<form th:action="@{/medico/guardar}" th:object="${medicos}" method="post">
+					<div class="form-group">
+						<label for="nombre">Nombre</label>
+						<input type="text" class="form-control" placeholder="key cuevas" th:field="*{nombre}">
+					</div>
+					<div class="form-group">
+						<label for="direccion">Direccion</label>
+						<input type="text" class="form-control" placeholder="psje los azahares 145" th:field="*{direccion}">
+					</div>
+					<div class="form-group">
+						<label for="telefono">Telefono</label>
+						<input type="text" class="form-control" placeholder="942671344" th:field="*{telefono}">
+					</div>
+					<div class="form-group">
+						<label for="especialidad">Especialidad</label>
+						<select th:field="*{especialidad}" class="form-control">
+	                        <option th:each="especial:${especialidad}" th:value="${especial.id}" th:text="${especial.nombre}">San Narcos</option>
+	                    </select>
+                    </div>
+					<button type="submit" class="btn btn-primary"><i class="fas fa-recycle"></i> Actualizar</button>
+					<a th:href="@{/medico}" class="btn btn-danger"><i class="fas fa-ban"></i> Cancelar</a>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
