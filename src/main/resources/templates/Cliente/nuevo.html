@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Nuevo Cliente</h1>
+
+		<div class="card">
+			<div class="card-header">Registro de nuevo cliente</div>
+			<div class="card-body">
+
+				<form th:action="@{/cliente/save}" th:object="${cliente}" 
+					method="post">
+					<div class="form-group">
+						<label for="nombre">Nombre:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Nombre de Cliente"
+							th:field="*{nombre}">
+					</div>
+					<div class="form-group">
+						<label for="">Documento:</label> 
+						<input th:field="*{documento}" class="form-control"/>
+						
+					</div>
+					<div class="form-group">
+						<label for="lugar">Lugar Nacimiento:</label> 
+						<input type="text" class="form-control"
+							placeholder="Lugar de Nacimiento"
+							th:field ="*{lugarNacimiento}">
+					</div>
+					<div class="form-group">
+						<label for="">fecha Nacimiento:</label> 
+						<input type="date" class="form-control" 
+							placeholder="fecha nacimiento"
+							th:field="*{fechaNacimiento}">
+					</div>
+					<div class="form-group">
+						<label>Sexo</label>
+						<input type="text" class="form-control" 
+						maxlength="1" />
+					</div>
+					
+					<div class="form-group">
+						<label>Observacion</label>
+						<textarea></textarea>
+					</div>
+					
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Grabar
+					</button>
+					<a th:href="@{/cliente}" class="btn btn-danger"> 
+						<i class="fas fa-undo"></i> Cancelar 
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

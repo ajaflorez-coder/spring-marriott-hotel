@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Informaci�n de Cliente</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Informaci�n de Cliente</div>
+			<div class="card-body">
+				
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+  					<span th:text="${dangerDel}"></span>
+				</div>
+			
+			
+				<form>
+				  <div class="form-group row">
+				    <label for="nombre" class="col-sm-2 col-form-label">Nombre :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${cliente.nombre}" class="form-control-plaintext" >
+				    </div>
+				  </div>				  
+				  
+				  <div class="form-group row">
+				    <label for="documento" class="col-sm-2 col-form-label">Documento :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${cliente.documento}" class="form-control-plaintext" >
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="direccion" class="col-sm-2 col-form-label">Direccion :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${cliente.fechaNacimiento}" class="form-control-plaintext" >
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <label for="sexo" class="col-sm-2 col-form-label">Sexo :</label>
+				    <div class="col-sm-10">
+				      <input type="text" readonly th:value="${cliente.sexo}" class="form-control-plaintext" >
+				    </div>
+				  </div>
+				</form>
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Fecha entrada</th>
+							<th scope="col">Fecha Salida</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Habitacion</th>
+						</tr>
+					</thead>
+					<tbody th:each="alquiler: ${cliente.alquileres}">
+						<tr>
+							<th scope="row" th:text="${alquiler.precio}">1</th>
+							<td th:text="${alquiler.fecha_entrada}">Mark</td>
+							<td th:text="${alquiler.fecha_salida}">Otto</td>
+							<td th:text="${alquiler.estado}">@mdo</td>
+							<td th:text="${alquiler.habitacion}">@mdo</td>
+						</tr>						
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/cliente}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Medicos</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
