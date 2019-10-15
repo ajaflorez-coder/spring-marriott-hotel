@@ -79,7 +79,7 @@ public class ClienteController {
 			}
 		} catch (Exception e) {
 			
-			model.addAttribute("dangerDel", "ERROR - Violación contra el principio de Integridad referencia");
+			model.addAttribute("dangerDel", "ERROR - Violación contra el principio de Integridad ");
 			try {
 				List<Cliente> cliente = clienteService.findAll();
 				model.addAttribute("cliente", cliente);
