@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1>Lista de Productos</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Lista de clientes</div>
+			<div class="card-body">
+
+				
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+						    <th scope="col">Codigo</th>
+							<th scope="col">Documento</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Fecha Nacimiento</th>
+							<th scope="col">Lugar Nacimiento</th>
+							<th scope="col">Sexo</th>
+							<th scope="col">Observacion</th>
+							<th scope="col">Edit / Delete</th>
+						
+						
+						
+							
+						</tr>
+					</thead>
+					<tbody th:each="producto: ${productos}">
+						<tr>
+							<td th:text="${producto.codigo}">@mdo</td>
+							<td th:text="${producto.nombre}">@mdo</td>
+							<td th:text="${producto.precio}">Otto</td>
+							<td th:text="${producto.fechaRegistro}">@mdo</td>
+
+							<td><a th:href="@{ '/producto/edit/' + ${producto.codigo} }"
+								class="btn btn-warning"> <i class="fas fa-edit"></i>
+							</a> <a th:href="@{ '/producto/del/' + ${producto.codigo} }"
+								class="btn btn-danger"> <i class="fas fa-trash-alt"></i>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/cliente/nuevo}" class="btn btn-primary"><i
+					class="fas fa-file-alt"></i> Nuevo cliente</a>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
