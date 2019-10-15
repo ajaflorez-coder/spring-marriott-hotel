@@ -16,7 +16,7 @@ public class MarriottApplicationTests {
 		
 		Habitacion antiguo = new Habitacion();
 		antiguo.setId(01);
-		antiguo.setNumeroCamas(22);
+		antiguo.setNumeroCamas(24);
 		antiguo.setDescripcion("Habitacion limpia");
 		antiguo.setPrecio(1525);
 		antiguo.setTipo(null);
