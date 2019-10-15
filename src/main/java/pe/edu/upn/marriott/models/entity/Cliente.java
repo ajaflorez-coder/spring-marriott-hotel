@@ -2,12 +2,14 @@ package pe.edu.upn.marriott.models.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,7 +18,7 @@ import javax.persistence.TemporalType;
 @Table(name = "clientes")
 public class Cliente {
 
-	@Id
+@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
@@ -25,7 +27,7 @@ public class Cliente {
 	
 	@Column(name = "nombre", length = 60)
 	private String nombre;
-	 
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_Nacimiento")	
 	private Date fechaNacimiento;
@@ -39,7 +41,17 @@ public class Cliente {
 	@Column(name = "observacion", length = 100)
 	private String observacion;
 	
+	@OneToMany(mappedBy="cliente")
+	private List<Alquiler>listaAlquiler2;
 	
+	public Cliente() {
+		listaAlquiler2=new ArrayList<>();
+	}
+	
+	public void addAlquiler(Alquiler alquiler) {
+		alquiler.setCliente(this);
+		this.listaAlquiler2.add(alquiler);
+	}
 
 	public Integer getId() {
 		return id;
@@ -97,11 +109,12 @@ public class Cliente {
 		this.observacion = observacion;
 	}
 
+	public List<Alquiler> getListaAlquiler2() {
+		return listaAlquiler2;
+	}
 
-
-
-	
-	
-	
-	
+	public void setListaAlquiler2(List<Alquiler> listaAlquiler2) {
+		this.listaAlquiler2 = listaAlquiler2;
+	}
 }
+

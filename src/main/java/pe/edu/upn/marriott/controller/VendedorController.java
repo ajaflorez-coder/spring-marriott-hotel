@@ -1,8 +1,10 @@
 package pe.edu.upn.marriott.controller;
 
+
+
 import java.util.List;
 import java.util.Optional;
-
+ 
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +18,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upn.marriott.models.entity.Habitacion;
-import pe.edu.upn.marriott.models.entity.Vendedor;
+import pe.edu.upn.marriott.models.entity.*;
+import pe.edu.upn.marriott.models.repository.ClienteRepository;
+import pe.edu.upn.marriott.models.repository.TipoRepository;
 import pe.edu.upn.marriott.services.AlquilerService;
+import pe.edu.upn.marriott.services.ClienteService;
 import pe.edu.upn.marriott.services.HabitacionService;
+import pe.edu.upn.marriott.services.TipoService;
 import pe.edu.upn.marriott.services.VendedorService;
 
-@Controller
+@Controller 
 @RequestMapping("/vendedor")
-@SessionAttributes( {"vendedor", "habitacion" } )
+@SessionAttributes({"vendedor", "alquiler"})
 public class VendedorController { 
 
-	@Autowired
+	@Autowired 
 	private VendedorService vendedorService;
-	
-	@Autowired
-	private HabitacionService habitacionService;
 	
 	@Autowired
 	private AlquilerService alquilerService;
 	
+	@Autowired
+	private HabitacionService habitacionService;
+
+	 
 	@GetMapping
 	public String inicio(Model model) {
 		try {
@@ -44,56 +50,54 @@ public class VendedorController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "/medico/inicio";
+		return "/vendedor/inicio";  
 	}
 	
-	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable("id") int id, Model model) {
-		try {
-			Optional<Vendedor> optional = vendedorService.findById(id);
-			if (optional.isPresent()) {
-				
-				List<Habitacion> habitaciones
-					= habitacionService.findAll(); 
-				
-				model.addAttribute("vendedor", optional.get());
-				model.addAttribute("habitaciones", habitaciones);
-			} else {
-				return "redirect:/vendedor";
-			}
-		} catch (Exception e) { 
-			// TODO: handle exception
-		}
-		
-		return "/vendedor/edit";
-	}
+
 	@PostMapping("/save")
 	public String save(@ModelAttribute("vendedor") Vendedor vendedor, 
 			Model model, SessionStatus status) {
 		try {
 			vendedorService.save(vendedor);
 			status.setComplete();
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return "redirect:/vendedor";
-	}
+	} 
+
+	
 	@GetMapping("/nuevo")
 	public String nuevo(Model model) {
 		Vendedor vendedor = new Vendedor();
 		model.addAttribute("vendedor", vendedor);
 		try {
-			List<Habitacion> habitaciones = 
-					habitacionService.findAll();
-			model.addAttribute("habitaciones", habitaciones);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return "/vendedor/nuevo";
 	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable("id") String id, Model model) {
+		try {
+			Optional<Vendedor> optional = vendedorService.findById(id);
+			if (optional.isPresent()) {
+				model.addAttribute("vendedor", optional.get());
+			} else {
+				return "redirect:/vendedor";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		  
+		return "/vendedor/edit";
+	}
+
+	
 	@GetMapping("/del/{id}")
-	public String eliminar(@PathVariable("id") int id, Model model) {
+	public String eliminar(@PathVariable("id") String id, Model model) {
 		try {
 			Optional<Vendedor> vendedor = vendedorService.findById(id);
 			if(vendedor.isPresent()) {
@@ -104,16 +108,17 @@ public class VendedorController {
 			model.addAttribute("dangerDel", "ERROR - Violación contra el principio de Integridad referencia");
 			try {
 				List<Vendedor> vendedores = vendedorService.findAll();
-				model.addAttribute("vendedor", vendedores);
+				model.addAttribute("vendedores", vendedores);
 			} catch (Exception e2) {
 				// TODO: handle exception
 			} 
-			return "/vendedor/inicio";
-		}
+			return "/vendedor/inicio"; 
+		} 
 		return "redirect:/vendedor";
 	}
+	
 	@GetMapping("/info/{id}")
-	public String info(@PathVariable("id") int id, Model model) {
+	public String info(@PathVariable("id") String id, Model model) {
 		try {
 			Optional<Vendedor> vendedor = vendedorService.findById(id);
 			if(vendedor.isPresent()) {
@@ -124,61 +129,43 @@ public class VendedorController {
 		} catch (Exception e) {
 
 		}	
-		
+		 
 		return "/vendedor/info";
 	}
 	
-	@GetMapping("/{id}/nuevahabitacion")
-	public String nuevoPaciente(@PathVariable("id") int id, Model model) {
-		Habitacion habitacion = new Habitacion();
+	@GetMapping("/{id}/nuevoalquiler")
+	public String nuevoAlquiler(@PathVariable("id") String id, Model model) {
+		Alquiler alquiler = new Alquiler();
 		try {
 			Optional<Vendedor> vendedor = vendedorService.findById(id);
 			if(vendedor.isPresent()) {
-				habitacion.setVendedor(vendedor.get());
-				model.addAttribute("habitacion", habitacion);
+				alquiler.setVendedor(vendedor.get());
+				model.addAttribute("alquiler", alquiler);
 			} else {
 				return "redirect:/vendedor";
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "/vendedor/nuevahabitacion";
+		return "/vendedor/nuevoalquiler";
 	}
 	
-	@PostMapping("/savehabitacion")
-	public String saveHabitacion(@ModelAttribute("habitacion") Habitacion habitacion, 
+	@PostMapping("/savealquiler")
+	public String saveAlquiler(@ModelAttribute("alquiler") Alquiler alquiler, 
 			Model model, SessionStatus status) {
 		try {
-			habitacionService.save(habitacion);
+			alquilerService.save(alquiler);
 			status.setComplete();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "redirect:/vendedor/info/" + habitacion.getVendedor().getId();
+		return "redirect:/vendedor/info/" + alquiler.getVendedor().getId();
 	}
 	
-} 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+  
+	
+}
+ 

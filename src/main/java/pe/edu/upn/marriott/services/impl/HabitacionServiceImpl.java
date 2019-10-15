@@ -4,14 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upn.marriott.models.entity.Habitacion;
 import pe.edu.upn.marriott.models.repository.HabitacionRepository;
 import pe.edu.upn.marriott.services.HabitacionService;
 
-public class HabitacionServiceImpl implements HabitacionService{
-
+@Service
+public class HabitacionServiceImpl implements HabitacionService {
+	
 	@Autowired
 	private HabitacionRepository habitacionRepository;
 
@@ -20,7 +22,8 @@ public class HabitacionServiceImpl implements HabitacionService{
 	public List<Habitacion> findAll() throws Exception {
 		return habitacionRepository.findAll();
 	}
- 
+
+
 	@Transactional(readOnly = true)
 	@Override
 	public Optional<Habitacion> findById(Integer id) throws Exception {
@@ -42,13 +45,16 @@ public class HabitacionServiceImpl implements HabitacionService{
 	@Transactional
 	@Override
 	public void deleteById(Integer id) throws Exception {
-		habitacionRepository.deleteById(id);
+	 habitacionRepository.deleteById(id);
+		
 	}
-
+ 
 	@Transactional
 	@Override
 	public void deleteAll() throws Exception {
 		habitacionRepository.deleteAll();
+		
 	}
-
+	
+	
 }
