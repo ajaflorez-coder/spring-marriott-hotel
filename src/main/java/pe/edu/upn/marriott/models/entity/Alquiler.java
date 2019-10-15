@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 
@@ -27,14 +29,18 @@ public class Alquiler {
 	@Column(name = "precio")
 	private float precio;
 	
-	
+	@Column(name = "fecha_entrada")
+	@Temporal(TemporalType.DATE)
 	private  Date fechaEntrada;
 	
-
+	@Column(name = "fecha_salida")
+	@Temporal(TemporalType.DATE)
 	private  Date fechaSalida;
 	
+	@Column(name = "estado", length = 10)
     private  String estado;
-    
+	
+	@Column(name = "observacion", length = 50)
     private String observacion;
     
 	@ManyToOne(fetch = FetchType.LAZY)

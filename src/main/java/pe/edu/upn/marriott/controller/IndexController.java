@@ -1,4 +1,4 @@
-package pe.edu.upn.marriot.controller;
+package pe.edu.upn.marriott.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

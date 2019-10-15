@@ -1,5 +1,6 @@
 package pe.edu.upn.marriott.models.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -39,7 +40,7 @@ public class Vendedor {
 	
 	
 	public Vendedor() {
-		
+		alquileres =  new ArrayList<>();
 	}
 
 

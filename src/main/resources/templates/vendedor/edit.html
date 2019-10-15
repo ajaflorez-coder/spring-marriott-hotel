@@ -14,6 +14,13 @@
 
 				<form th:action="@{/vendedor/save}" th:object="${vendedor}" 
 					method="post">
+					
+						<div class="form-group">
+						<label for="nombre">#:</label> 
+						<input type="text" class="form-control" 
+							placeholder="id de vendedor"
+							th:field="*{id}">
+					</div>
 					<div class="form-group">
 						<label for="nombre">Nombre:</label> 
 						<input type="text" class="form-control" 

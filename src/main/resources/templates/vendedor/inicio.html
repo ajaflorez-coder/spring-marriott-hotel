@@ -37,6 +37,9 @@
 							<td th:text="${vendedor.observacion}">@mdo</td>
 							<td th:text="${vendedor.sueldo}">@mdo</td>
 							<td>
+							<a th:href="@{ '/vendedor/info/' + ${vendedor.id} }" class="btn btn-info"> 
+									<i class="fas fa-info"></i> 
+								</a>
 								<a th:href="@{ '/vendedor/edit/' + ${vendedor.id} }" class="btn btn-warning"> 
 									<i class="fas fa-edit"></i> 
 								</a>

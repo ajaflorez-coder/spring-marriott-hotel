@@ -52,35 +52,38 @@
 				    </div>
 				  </div>
 				</form>
-			<!-- aqui me quede -->
+		
 				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Nombre</th>
-							<th scope="col">Fecha nac.</th>
-							<th scope="col">Dirección</th>
-							<th scope="col">telefono</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Fecha entrada</th>
+							<th scope="col">Fecha salida</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Observacion</th>
+							<th scope="col">vendedor_id</th>
+						    <th scope="col">Cliente_id</th>
+						   	<th scope="col">Habitacion_id</th>
+							
 							<th scope="col"></th>
 						</tr>
 					</thead>
-					<tbody th:each="paciente: ${medico.pacientes}">
+					<tbody th:each="alquiler: ${vendedor.alquileres}">
 						<tr>
-							<th scope="row" th:text="${paciente.codigo}">1</th>
-							<td th:text="${paciente.nombre}">Mark</td>
-							<td th:text="${paciente.fechaNacimiento}">Otto</td>
-							<td th:text="${paciente.direccion}">@mdo</td>
-							<td th:text="${paciente.telefono}">@mdo</td>
+							<th scope="row" th:text="${alquiler.id}">1</th>
+							<td th:text="${alquiler.nombre}">Mark</td>
+								<td th:text="${alquiler.precio}">@mdo</td>
+							<td th:text="${alquiler.fechaEntrada}">@mdo</td>
+							<td th:text="${alquiler.fechaSalida}">@mdo</td>
+							<td th:text="${alquiler.estado}">@mdo</td>
+							<td th:text="${alquiler.observacion}">@mdo</td>
+							<td th:text="${alquiler.vendedor.id}">@mdo</td>
+							<td th:text="${alquiler.cliente.id}">@mdo</td>
+							<td th:text="${alquiler.habitacion.id}">@mdo</td>
 							<td>
-								<a th:href="@{ '/medico/info/' + ${paciente.codigo} }" class="btn btn-info"> 
-									<i class="fas fa-info"></i> 
-								</a>
-								<a th:href="@{ '/medico/edit/' + ${paciente.codigo} }" class="btn btn-warning"> 
-									<i class="fas fa-edit"></i> 
-								</a>
-								<a th:href="@{ '/medico/del/' + ${paciente.codigo} }" class="btn btn-danger"> 
-									<i class="fas fa-trash-alt"></i> 
-								</a>							
+												
 							</td>
 						</tr>						
 					</tbody>
@@ -88,10 +91,10 @@
 
 			</div>
 			<div class="card-footer text-muted">
-				<a th:href="@{/medico}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Medicos</a>
-				<a th:href="@{'/medico/' + ${medico.id} + '/nuevopaciente/'}" 
+				<a th:href="@{/vendedor}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Vendedores</a>
+				<a th:href="@{'/vendedor/' + ${vendedor.id} + '/nuevoAlquiler/'}" 
 					class="btn btn-primary">
-					<i class="fas fa-file-alt"></i> Nuevo paciente</a>
+					<i class="fas fa-file-alt"></i> Nuevo Alquiler</a>
 			</div>
 		</div>
 
