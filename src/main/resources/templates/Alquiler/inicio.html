@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Lista de Alquileres</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Lista de alquileres</div>
+			<div class="card-body">
+				
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+  					<span th:text="${dangerDel}"></span>
+				</div>
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Fecha de Entrada</th>
+							<th scope="col">Fecha de Salida</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Observacion</th>
+							<th scope="col">Cliente</th>
+							<th scope="col">Vendedor</th>
+							<th scope="col">Habitacion</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					 <tbody th:each="alquiler: ${alquileres}">
+						<tr>
+							<th scope="row" th:text="${alquiler.id}">1</th>
+							<td th:text="${alquiler.precio}">Mark</td>
+							<td th:text="${alquiler.fechaEntrada}">Otto</td>
+							<td th:text="${alquiler.fechaSalida}">@mdo</td>
+							<td th:text="${alquiler.estado}">@mdo</td>
+							<td th:text="${alquiler.observacion}">@mdo</td>
+							<td th:text="${alquiler.cliente.id}">@mdo</td>
+							<td th:text="${alquiler.vendedor.id}">@mdo</td>
+							<td th:text="${alquiler.habitacion.id}">@mdo</td>
+							<!--  <td>
+								<a th:href="@{ '/medico/info/' + ${medico.id} }" class="btn btn-info"> 
+									<i class="fas fa-info"></i> 
+								</a>
+								<a th:href="@{ '/medico/edit/' + ${medico.id} }" class="btn btn-warning"> 
+									<i class="fas fa-edit"></i> 
+								</a>
+								<a th:href="@{ '/medico/del/' + ${medico.id} }" class="btn btn-danger"> 
+									<i class="fas fa-trash-alt"></i> 
+								</a>							
+							</td>-->
+						</tr>						
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/alquiler/nuevo}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Alquiler</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
