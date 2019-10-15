@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card text-center">
+		<h1>Lista de habitaciones</h1>	
+		<div class="card">
+			<div class="card-header">Registro de nueva habitacion</div>
+			<div class="card-body">
+			
+			<form th:action="@{/habitacion/save}" th:object="${habitacion}" method="post">
+				  <div class="form-group">
+			<label for="numeroCamas"> NUMERO DE CAMAS </label>
+				    <input type="text" class="form-control" placeholder="numero de camas" th:field="*{numeroCamas}">
+				  </div>
+				  
+				    <div class="form-group">
+			<label for="descripcion"> DESCRIPCION </label>
+				    <input type="text" class="form-control" placeholder="descripcion" th:field="*{descripcion}">
+				  </div>
+			
+			<label for="precio"> PRECIO </label>
+				    <input type="text" class="form-control" placeholder="precio" th:field="*{precio}">
+				  </div>	  
+				  
+				  <label for="observacion"> OBSERVACION </label>
+				    <input type="text" class="form-control" placeholder="observacion" th:field="*{observacion}">
+				  </div>
+				  
+			</div>
+			</div>
+			</div>
+			</div>
+</body>
+</html>
