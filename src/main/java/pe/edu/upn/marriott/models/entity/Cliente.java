@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 @Entity
 @Table(name = "clientes")
 public class Cliente {
@@ -30,7 +31,7 @@ public class Cliente {
 	private String nombre;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "fecha_Nacimiento")	
+	@Column(name = "fecha_Nacimiento")
 	private Date fechaNacimiento;
 	
 	@Column(name = "lugar_Nacimiento", length = 50)
