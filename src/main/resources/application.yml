@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://localhost:1433;databasename=marriott
     username: sa
-    password: 12345678
+    password: 1234
   jpa:
     database: sql-server
     hibernate:
@@ -12,4 +12,4 @@ spring:
     show-sql: false
   
 server:
-  port: 8081
+  port: 8079
