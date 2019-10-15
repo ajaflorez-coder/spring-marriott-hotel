@@ -44,7 +44,7 @@ public class ClienteController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "redirect:/ListadoCliente";
+		return "redirect:/Clientes";
 	}
 	
 	
