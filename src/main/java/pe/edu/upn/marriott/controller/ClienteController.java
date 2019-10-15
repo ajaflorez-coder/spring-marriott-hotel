@@ -15,16 +15,31 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 
+import pe.edu.upn.marriott.models.entity.Alquiler;
 import pe.edu.upn.marriott.models.entity.Cliente;
+import pe.edu.upn.marriott.models.entity.Habitacion;
+import pe.edu.upn.marriott.models.entity.Vendedor;
+import pe.edu.upn.marriott.services.AlquilerService;
 import pe.edu.upn.marriott.services.ClienteService;
+import pe.edu.upn.marriott.services.HabitacionService;
+import pe.edu.upn.marriott.services.VendedorService;
 
 @Controller
 @RequestMapping("/cliente")
-@SessionAttributes( "cliente")
+@SessionAttributes( {"cliente","alquiler"} )
 public class ClienteController {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private AlquilerService alquilerService;
+	
+	@Autowired
+	private HabitacionService habitacionService;
+	
+	@Autowired
+	private VendedorService vendedorService;
 
 	@GetMapping
 	public String inicio(Model model) {
@@ -105,10 +120,12 @@ public class ClienteController {
 	
 	
 	@GetMapping("/info/{id}")
-	public String info(@PathVariable("id") int id, Model model) {
+	public String info(@PathVariable("id") int id, Model model , Model model1) {
 		try {
 			Optional<Cliente> cliente = clienteService.findById(id);
 			if(cliente.isPresent()) {
+				
+				
 				
 				model.addAttribute("cliente", cliente.get());
 				
@@ -122,4 +139,48 @@ public class ClienteController {
 		
 		return "/cliente/info";
 	}
+	
+	@GetMapping("/{id}/nuevoalquiler/")
+	public String nuevoAquiler(@PathVariable("id") int id, Model model) {
+		Alquiler alquiler = new Alquiler();
+		try {
+			Optional<Cliente> cliente = clienteService.findById(id);
+			
+			
+			if(cliente.isPresent()) {
+				
+				List<Habitacion> habitaciones = habitacionService.findAll();
+				List<Vendedor> vendedor = vendedorService.findAll();
+				
+				alquiler.setCliente(cliente.get());
+				model.addAttribute("alquiler", alquiler);
+				
+				model.addAttribute("habitaciones", habitaciones);
+				model.addAttribute("vendedores", vendedor);
+				
+			} else {
+				return "redirect:/cliente";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "/cliente/nuevoalquiler";
+	}
+	
+	@PostMapping("/savealquiler")
+	public String saveAlquiler(@ModelAttribute("alquiler") Alquiler alquiler, Model model, SessionStatus status) {
+		try {
+			alquilerService.save(alquiler);
+			status.setComplete();
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "redirect:/cliente/info/" + alquiler.getCliente().getId();
+	}
+
+	
+
+	
+
 }
