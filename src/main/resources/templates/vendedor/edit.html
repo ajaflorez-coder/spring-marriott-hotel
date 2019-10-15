@@ -12,14 +12,9 @@
 			<div class="card-header">Edición vendedor</div>
 			<div class="card-body">
 
-				<form th:action="@{/medico/save}" th:object="${medico}" 
+				<form th:action="@{/vendedor/save}" th:object="${vendedor}" 
 					method="post">
-						<div class="form-group">
-						<label for="id">Codigo:</label> 
-						<input type="text" class="form-control" 
-							placeholder="codigo de vendedor"
-							th:field="*{id}">
-					</div>
+					
 					<div class="form-group">
 						<label for="nombre">Nombre:</label> 
 						<input type="text" class="form-control" 
