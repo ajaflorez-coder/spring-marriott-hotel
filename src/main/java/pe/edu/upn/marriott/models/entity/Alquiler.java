@@ -1,6 +1,7 @@
 package pe.edu.upn.marriott.models.entity;
 
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "alquileres")
@@ -21,36 +20,39 @@ public class Alquiler {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="id" , nullable = false)
 	private Integer id;
 	
-	@Column(name = "precio")
-	private Float precio;
+	@Column(name ="precio" , nullable = false)
+	private double precio;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "fecha_entrada")
-	private Date fechaEntrada;
+	@Column(name ="Fecha_Entrada" , nullable = false)
+	private Date Fecha_Entrada;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "fecha_salida")
-	private Date fechaSalida;
+	@Column(name ="Fecha_Salida" , nullable = false)
+	private Date Fecha_Salida;
 	
-	@Column(name = "estado", length = 20)
+	@Column(name = "estado" , length = 40 , nullable = false)
 	private String estado;
-
-	@Column(name = "observacion", length = 60)
+	
+	@Column(name = "observacion", length = 100 , nullable = false)
 	private String observacion;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "vendedor_id")
-	private Vendedor vendedor;
+	@JoinColumn(name ="vendedor_id")
+	private Vendedor Vendedor;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cliente_id")
-	private Cliente cliente;
+	@JoinColumn(name ="habitacion_id")
+	private Habitacion Habitacion;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "habitacion_id")
-	private Habitacion habitacion;
+	@JoinColumn(name ="cliente_id")
+	private Cliente Cliente;
+	
+	public Alquiler() {
+		
+	}
 
 	public Integer getId() {
 		return id;
@@ -60,28 +62,28 @@ public class Alquiler {
 		this.id = id;
 	}
 
-	public Float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(Float precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 
-	public Date getFechaEntrada() {
-		return fechaEntrada;
+	public Date getFecha_Entrada() {
+		return Fecha_Entrada;
 	}
 
-	public void setFechaEntrada(Date fechaEntrada) {
-		this.fechaEntrada = fechaEntrada;
+	public void setFecha_Entrada(Date fecha_Entrada) {
+		Fecha_Entrada = fecha_Entrada;
 	}
 
-	public Date getFechaSalida() {
-		return fechaSalida;
+	public Date getFecha_Salida() {
+		return Fecha_Salida;
 	}
 
-	public void setFechaSalida(Date fechaSalida) {
-		this.fechaSalida = fechaSalida;
+	public void setFecha_Salida(Date fecha_Salida) {
+		Fecha_Salida = fecha_Salida;
 	}
 
 	public String getEstado() {
@@ -101,28 +103,31 @@ public class Alquiler {
 	}
 
 	public Vendedor getVendedor() {
-		return vendedor;
+		return Vendedor;
 	}
 
 	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+		Vendedor = vendedor;
 	}
 
 	public Habitacion getHabitacion() {
-		return habitacion;
+		return Habitacion;
 	}
 
 	public void setHabitacion(Habitacion habitacion) {
-		this.habitacion = habitacion;
+		Habitacion = habitacion;
 	}
+
+	public Cliente getCliente() {
+		return Cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		Cliente = cliente;
+	}
+
+
+	
 	
 	
 }

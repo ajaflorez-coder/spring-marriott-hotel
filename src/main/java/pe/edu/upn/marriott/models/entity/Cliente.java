@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="id" , nullable = false)
 	private Integer id;
 	
 	@Column(name = "documento", length = 8)
@@ -41,63 +43,77 @@ public class Cliente {
 	@Column(name = "observacion", length = 100)
 	private String observacion;
 	
-	@OneToMany(mappedBy = "cliente")
-	private List<Alquiler> alquileres;
+	@OneToMany(mappedBy = "Cliente" , fetch = FetchType.LAZY)
+	private List<Alquiler> ListaAlquiler;
 	
 	public Cliente() {
-		alquileres = new ArrayList<>();
+		this.ListaAlquiler = new ArrayList<>();
 	}
-	public void addPaciente(Alquiler alquiler) {
-		alquiler.setCliente(this);
-		this.alquileres.add(alquiler);
-	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getDocumento() {
 		return documento;
 	}
+
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
 	public String getLugarNacimiento() {
 		return lugarNacimiento;
 	}
+
 	public void setLugarNacimiento(String lugarNacimiento) {
 		this.lugarNacimiento = lugarNacimiento;
 	}
+
 	public char getSexo() {
 		return sexo;
 	}
+
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
+
 	public String getObservacion() {
 		return observacion;
 	}
+
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
-	public List<Alquiler> getAlquileres() {
-		return alquileres;
+
+	public List<Alquiler> getListaAlquiler() {
+		return ListaAlquiler;
 	}
-	public void setAlquileres(List<Alquiler> alquileres) {
-		this.alquileres = alquileres;
+
+	public void setListaAlquiler(List<Alquiler> listaAlquiler) {
+		ListaAlquiler = listaAlquiler;
 	}
+	
+	
 	
 }

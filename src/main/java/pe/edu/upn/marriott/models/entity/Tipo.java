@@ -26,11 +26,6 @@ public class Tipo {
 	public Tipo() {
 		this.habitaciones = new ArrayList<>();
 	}
-	
-	public void addHabitacion( Habitacion habitacion ) {
-		habitacion.setTipo( this );
-		this.habitaciones.add( habitacion );
-	}
 
 	public String getId() {
 		return id;
@@ -55,5 +50,7 @@ public class Tipo {
 	public void setHabitaciones(List<Habitacion> habitaciones) {
 		this.habitaciones = habitaciones;
 	}
+	
+
 
 }

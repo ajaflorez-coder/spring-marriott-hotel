@@ -20,6 +20,7 @@ public class Habitacion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="id" , nullable = false)
 	private Integer id;
 	
 	@Column(name = "numeroCamas")
@@ -38,17 +39,43 @@ public class Habitacion {
 	@Column(name = "observacion", length = 100)
 	private String observacion;
 	
-	@OneToMany(mappedBy = "habitacion")
-	private List<Alquiler> alquileres;
+	@OneToMany(mappedBy = "Habitacion" , fetch = FetchType.LAZY)
+	private List<Alquiler> ListaAlquiler; 
 	
 	public Habitacion() {
-		alquileres = new ArrayList<>();
+		this.ListaAlquiler = new ArrayList<Alquiler>();
 	}
 
+	public Integer getId() {
+		return id;
+	}
 
-	public void addPaciente(Alquiler alquiler) {
-		alquiler.setHabitacion(this);
-		this.alquileres.add(alquiler);
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getNumeroCamas() {
+		return numeroCamas;
+	}
+
+	public void setNumeroCamas(Integer numeroCamas) {
+		this.numeroCamas = numeroCamas;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Float precio) {
+		this.precio = precio;
 	}
 
 	public Tipo getTipo() {
@@ -58,6 +85,23 @@ public class Habitacion {
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
+
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
+	}
+
+	public List<Alquiler> getListaAlquiler() {
+		return ListaAlquiler;
+	}
+
+	public void setListaAlquiler(List<Alquiler> listaAlquiler) {
+		ListaAlquiler = listaAlquiler;
+	}
+
 	
 	
 }
