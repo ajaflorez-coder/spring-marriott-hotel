@@ -6,44 +6,42 @@
 
 	<div class="container">
 
-		<h1>Nueva habitacion</h1>
+		<h1>NUEVO ALQUOLER</h1>
 
 		<div class="card">
-			<div class="card-header">Registro de nueva habitacion</div>
+			<div class="card-header">REFGISTRO DE ALQUILERES</div>
 			<div class="card-body">
 
-				<form th:action="@{/habitacion/save}" th:object="${habitacion}" 
-					method="post">
+				<form th:action="@{/habitacion/savealquiler}" 
+					th:object="${alquiler}" method="post">
 					<div class="form-group">
-						<label for="numeroCamas">NUMERO DE CAMAS</label> 
+						<label for="precio">PRECIO </label> 
 						<input type="text" class="form-control" 
-							placeholder="NUMERO DE CAMAS"
-							th:field="*{numeroCamas}">
+							placeholder="precio"
+							th:field="*{precio}">
 					</div>
 					<div class="form-group">
-						<label for="descripcion">DESCRIPCION</label> 
+						<label for="fechaEntrada">FECHADE ENTRADA</label> 
 						<input type="text" class="form-control" 
-							placeholder="DESCRIPCION"
-							th:field="*{descripcion}">
-					</div>
+							placeholder="fecha de Entrada"
+							th:field="*{fecha_entrada}">
+					</div>					
 					<div class="form-group">
-						<label for="precio">PRECIO</label> 
+						<label for="fechaSalida">FECHA DE SALIDA</label> 
 						<input type="text" class="form-control"
-							placeholder="PRECIO"
-							th:field ="*{precio}">
+							placeholder="fecha de Salida"
+							th:field ="*{fecha_salida}">
 					</div>
 					<div class="form-group">
-						<label for="tipo">TIPO</label> 
-						<select th:field="*{tipo}" class="form-control">
-					      <option th:each="tipo : ${tipos}"
-					      	th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
-					    </select>
-						
+						<label for="estado">ESTADO </label> 
+						<input type="text" class="form-control" 
+							placeholder="estado"
+							th:field="*{estado}">
 					</div>
-					<div class="form-group">
+					<div class="form-groupx">
 						<label for="observacion">OBSERVACION</label> 
 						<input type="text" class="form-control" 
-							placeholder="OBSERVACION"
+							placeholder="observacion"
 							th:field="*{observacion}">
 					</div>
 					
