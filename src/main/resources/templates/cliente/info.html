@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Información de Cliente</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Información de Cliente</div>
+			<div class="card-body">
+				
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+  					<span th:text="${dangerDel}"></span>
+				</div>
+			
+			
+				<form>
+				<div class="form-group">
+						<label for="nombre">Documento</label> 
+						<input type="text" class="form-control"
+							placeholder="Documento del cliente" th:field="*{documento}">
+					</div>
+
+					<div class="form-group">
+						<label for="nombre">Nombre</label> 
+						<input type="text" class="form-control" 
+							placeholder="Nombre de cliente" th:field="*{nombre}">
+					</div>
+
+					<div class="form-group">
+						<label for="direccion">fechaNacimiento</label> 
+						<input type="text" class="form-control" 
+							placeholder="Fecha de nacimiento" th:field="*{fechaNacimiento}">
+					</div>
+					
+					<div class="form-group">
+						<label for="direccion">fechaNacimiento</label> 
+						<input type="text" class="form-control" 
+							placeholder="Lugar de nacimiento" th:field="*{lugarNacimiento}">
+					</div>
+				
+					<div class="form-group">
+						<label for="telefono">Sexo</label> 
+						<input type="text" class="form-control" 
+							placeholder="sexo del cliente" th:field="*{sexo}">
+					</div>
+					
+					<div class="form-group">
+						<label for="telefono">Observacion</label> 
+						<input type="text" class="form-control" 
+							placeholder="Observacion del cliente" th:field="*{observacion}">
+					</div>
+				</form>
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">numero de camas</th>
+							<th scope="col">descripcion</th>
+							<th scope="col">precio</th>
+							<th scope="col">observacion</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody th:each="habitacion: ${cliente.habitaciones}">
+						<tr>
+							<th scope="row" th:text="${habitacion.numeroCamas}">1</th>
+							<td th:text="${habitacion.descripcion}">Mark</td>
+							<td th:text="${habitacion.precio}">Otto</td>
+							<td th:text="${habitacion.tipo_id}">@mdo</td>
+							<td th:text="${habitacion.obsercacion}">@mdo</td>
+							<td>
+								<a th:href="@{ '/habitacion/info/' + ${habitacion.id} }" class="btn btn-info"> 
+									<i class="fas fa-info"></i> 
+								</a>
+								<a th:href="@{ '/habitacion/edit/' + ${habitacion.id} }" class="btn btn-warning"> 
+									<i class="fas fa-edit"></i> 
+								</a>
+								<a th:href="@{ '/habitacion/del/' + ${habitacion.id} }" class="btn btn-danger"> 
+									<i class="fas fa-trash-alt"></i> 
+								</a>							
+							</td>
+						</tr>						
+					</tbody>
+				</table>
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/cliente}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver cliente</a>
+				<a th:href="@{'/cliente/' + ${cliente.id} + '/nuevohabitacion/'}" 
+					class="btn btn-primary">
+					<i class="fas fa-file-alt"></i> Nueva habitacion</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
