@@ -2,8 +2,8 @@
 spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;databasename=marriott
-    username: sa
+    url: jdbc:sqlserver://LAPTOP-VF70175T;databasename=marriott
+    username: Alexander
     password: 12345678
   jpa:
     database: sql-server
@@ -13,3 +13,4 @@ spring:
   
 server:
   port: 8081
+  
