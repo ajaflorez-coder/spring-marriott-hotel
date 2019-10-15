@@ -1,0 +1,36 @@
+use master
+
+use marriott
+
+--sp_help habitaciones
+
+
+insert into tipos values('T001','Matrimonial')
+insert into tipos values('T002','Doble')
+insert into tipos values('T003','VIP')
+
+insert into habitaciones values ('una descripcion',2,'una observacion',85,'T001')
+insert into habitaciones values ('una descripcion',2,'una observacion',100,'T002')
+insert into habitaciones values ('una descripcion',1,'una observacion',150,'T003')
+
+
+insert into clientes values('21598745','10-02-1985','Lima','Diego Verdeguer','No hay observacion','M')
+insert into clientes values('36985216','19-07-1995','Callao','Jose Verdeguer','No hay observacion','M')
+insert into clientes values('46852475','20-12-1975','La victoria','Dante Verdeguer','Una observacion','M')
+
+insert into vendedores values('EM01','Jr. las casitas 123','Jacinto Suarez','No hya observacion',1500,'965215874')
+insert into vendedores values('EM02','Av. los osos 123','Leonardo Perez','No hya observacion',1300,'996665827')
+insert into vendedores values('EM03','Jr. huancayo 183','Oscar Carrion','Si hay observacion',1400,'996582140')
+
+
+
+insert into alquileres values('Disponible','15/10/2019','17/10/2019','sin observacion',85,1,2,'EM03')
+
+
+--delete from habitaciones where id=3
+--delete from tipos where id='T003'
+
+--sp_help alquileres
+
+select * from alquileres
+

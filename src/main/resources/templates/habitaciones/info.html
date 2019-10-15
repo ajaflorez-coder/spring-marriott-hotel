@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Informacion del Habitaciones</h1>
+
+		<div class="card text-center">
+			<div class="card-header">Informacion de Habitaciones</div>
+			<div class="card-body">
+			
+				<div th:if="${dangerDel}" class="alert alert-danger" role="alert">
+					<span th:text="${dangerDel}"></span>
+				</div>
+				<form>
+					<div class="form-group row">
+						<label for="nombre" class="col-sm-2 col-form-label">Codigo</label>
+						<div class="col-sm-10">
+							<input type="text" readonly th:value="${habitaciones.id}" class="form-control-plaintext">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="nombre" class="col-sm-2 col-form-label">Numero de Camas</label>
+						<div class="col-sm-10">
+							<input type="text" readonly th:value="${habitaciones.numeroCamas}" class="form-control-plaintext">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="nombre" class="col-sm-2 col-form-label">Precio de la habitacion</label>
+						<div class="col-sm-10">
+							<input type="text" readonly th:value="${habitaciones.precio}" class="form-control-plaintext">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="especialidad" class="col-sm-2 col-form-label">Tipos de habitacion</label>
+						<div class="col-sm-10">
+							<input type="text" readonly th:value="${habitaciones.tipo.nombre}" class="form-control-plaintext">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="direccion" class="col-sm-2 col-form-label">Descripcion de la habitacion</label>
+						<div class="col-sm-10">
+							<input type="text" readonly th:value="${habitaciones.descripcion}" class="form-control-plaintext">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="telefono" class="col-sm-2 col-form-label">Observacion de la habitacion</label>
+						<div class="col-sm-10">
+							<input type="text" readonly th:value="${habitaciones.observacion}" class="form-control-plaintext">
+						</div>
+					</div>
+				</form>
+			<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Precio de Alquiler</th>
+							<th scope="col">Fecha de entrada</th>
+							<th scope="col">Fecha de salida</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Observacion</th>
+							<th scope="col">Id Vendedor</th>
+							<th scope="col">Cliente</th>
+							<th scope="col">Id Habitacion</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody th:each="alquileres: ${habitaciones.alquileres}">
+						<tr>
+							<th scope="row" th:text="${alquileres.id}">1</th>
+							<td th:text="${alquileres.precio}">Mark</td>
+							<td th:text="${alquileres.fecha_entrada}">Otto</td>
+							<td th:text="${alquileres.fecha_salida}">@mdo</td>
+							<td th:text="${alquileres.estado}">@mdo</td>
+							<td th:text="${alquileres.observacion}">@mdo</td>
+							<td th:text="${alquileres.vendedor.id}">@mdo</td>
+							<td th:text="${alquileres.clientes.nombre}">@mdo</td>
+							<td th:text="${alquileres.habitaciones.id}">@mdo</td>
+
+				<!-- 		<td>
+								<a th:href="@{ '/habitaciones/info/' + ${alquileres.id} }" class="btn btn-info"> <i class="fas fa-info"></i></a> 
+								<a th:href="@{ '/habitaciones/edit/' + ${alquileres.id} }" class="btn btn-warning"> <i class="fas fa-edit"></i></a> 
+								<a th:href="@{ '/habitaciones/del/' + ${alquileres.id} }" class="btn btn-danger"> <i class="fas fa-trash-alt"></i></a>
+							</td>  -->	
+						</tr>
+					</tbody>
+				</table>  	
+
+			</div>
+			<div class="card-footer text-muted">
+				<a th:href="@{/habitaciones}" class="btn btn-success"><i class="fas fa-file-alt"></i> Ver Habitaciones</a>
+				<a th:href="@{'/habitaciones/' + ${habitaciones.id} + '/nuevoalquiler/'}" class="btn btn-primary"><i class="fas fa-file-alt"></i> Nuevo Alquiler</a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
