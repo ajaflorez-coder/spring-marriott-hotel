@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Nuevo Cliente</h1>
+
+		<div class="card">
+			<div class="card-header">Registro de nuevo cliente</div>
+			<div class="card-body">
+
+				<form th:action="@{/cliente/save}" 
+					th:object="${cliente}" method="post">
+					<div class="form-group">
+						<label for="nombre">Codigo:</label> 
+						<input type="text" class="form-control" 
+							placeholder="codigo de paciente"
+							th:field="*{id}">
+					</div>
+					<div class="form-group">
+						<label for="nombre">Nombre:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Nombre de paciente"
+							th:field="*{nombre}">
+					</div>
+					<div class="form-group">
+						<label for="fechaNacimiento">Fecha nacimiento:</label> 
+						<input type="text" class="form-control" 
+							placeholder="fecha de nacimiento"
+							th:field="*{fecha_Nacimiento}">
+					</div>					
+					<div class="form-group">
+						<label for="fechaNacimiento">Fecha nacimiento:</label> 
+						<input type="text" class="form-control" 
+							placeholder="fecha de nacimiento"
+							th:field="*{lugar_Nacimiento}">
+					
+					
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Grabar
+					</button>
+					<a th:href="@{/medico}" class="btn btn-danger"> 
+						<i class="fas fa-undo"></i> Cancelar 
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
