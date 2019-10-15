@@ -1,9 +1,15 @@
 package pe.edu.upn.marriott.models.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "vendedores")
@@ -28,7 +34,8 @@ public class Vendedor {
 	@Column(name = "sueldo")
 	private Float sueldo;
 	
-	
+	@OneToMany(mappedBy = "vendedor", fetch = FetchType.LAZY)
+	private List<Alquiler> alquileres;
 	
 	public Vendedor() {
 		
