@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<style>
+body {
+	background-color: #e6e6ff
+}
+</style>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1 align="center">Editar Vendedor</h1>
+
+		<form th:action="@{/vendedor/save}" th:object="${vendedor}"
+			method="post">
+
+			<div class="form-group">
+						<label for="codigo">Codigo de Vendedor:</label> <input type="text"
+							class="form-control" placeholder="SOLO 4 CARACTERES"
+							th:field="*{id}">
+					</div>
+					<div class="form-group">
+						<label for="nombre">Nombre:</label> <input type="text"
+							class="form-control" placeholder="Nombre de Vendedor"
+							th:field="*{nombre}">
+					</div>
+					<div class="form-group">
+						<label for="precio">Direccion:</label> <input type="text"
+							class="form-control" placeholder="Direccion de Vendedor"
+							th:field="*{direccion}">
+					</div>
+					<div class="form-group">
+						<label for="stock">Telefono:</label> <input type="text"
+							class="form-control" placeholder="Telefono de Vendedor"
+							th:field="*{telefono}">
+					</div>
+					<div class="form-group">
+						<label for="stock">Sueldo:</label> <input type="text"
+							class="form-control" placeholder="Sueldo de Vendedor"
+							th:field="*{sueldo}">
+					</div>
+					<div class="form-group">
+						<label for="stock">Observacion:</label> <input type="text"
+							class="form-control" placeholder="OBSERVACION"
+							th:field="*{observacion}">
+					</div>
+					
+			<button type="submit" class="btn btn-primary">Actualizar</button>
+			<a th:href="@{/vendedor}" class="btn btn-danger"> <i><i
+					class="fas fa-times-circle"></i></i> Cancelar
+			</a>
+		</form>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
