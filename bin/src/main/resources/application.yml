@@ -1,0 +1,15 @@
+# SQL SERVER
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databasename=marriott
+    username: sa
+    password: 12345678
+  jpa:
+    database: sql-server
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  
+server:
+  port: 8081
