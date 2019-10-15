@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+		<h1>Nueva habitacion</h1>
+
+		<div class="card">
+			<div class="card-header">Registro de nueva habitacion</div>
+			<div class="card-body">
+
+				<form th:action="@{/habitacion/save}" th:object="${habitacion}" 
+					method="post">
+					<div class="form-group">
+						<label for="numeroCamas">Numero de Camas:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Numero de Camas"
+							th:field="*{numeroCamas}">
+					</div>
+					<div class="form-group">
+						<label for="descripcion">Descripcion:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Descripcion"
+							th:field="*{descripcion}">
+					</div>
+					<div class="form-group">
+						<label for="precio">Precio:</label> 
+						<input type="text" class="form-control"
+							placeholder="Precio"
+							th:field ="*{precio}">
+					</div>
+					<div class="form-group">
+						<label for="tipo">Tipo:</label> 
+						<select th:field="*{tipo}" class="form-control">
+					      <option th:each="tipo : ${tipos}"
+					      	th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+					    </select>
+						
+					</div>
+					<div class="form-group">
+						<label for="observacion">Observacion:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Observacion"
+							th:field="*{observacion}">
+					</div>
+					
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> Grabar
+					</button>
+					<a th:href="@{/medico}" class="btn btn-danger"> 
+						<i class="fas fa-undo"></i> Cancelar 
+					</a>
+				</form>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
