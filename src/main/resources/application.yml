@@ -1,15 +1,14 @@
 # SQL SERVER
 spring:
   datasource:
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;databasename=marriott
-    username: sa
-    password: 12345678
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/marriot
+    username: root
+    password: toor
   jpa:
-    database: sql-server
+    database: mysql
     hibernate:
       ddl-auto: update
-    show-sql: false
-  
-server:
-  port: 8081
+    properties:
+      dialect: org.hibernate.dialect.MYSQL5Dialect
+    show-sql: true
