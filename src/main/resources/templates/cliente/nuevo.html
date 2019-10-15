@@ -6,52 +6,56 @@
 
 	<div class="container">
 
-		<h1>Edicion del cliente</h1>
+		<h1>Nuevo cliente</h1>
 		<div class="card">
-			<div class="card-header">Edicion cliente</div>
+			<div class="card-header">Registro de nuevo cliente</div>
 			<div class="card-body">
 			
 				<form th:action="@{/cliente/save}" th:object="$cliente" method="post">
 				
 				
 					<div class="form-group">
-						<label for="nombre">Documento</label> <input type="text"
-							class="form-control"
+						<label for="nombre">Documento</label> 
+						<input type="text" class="form-control"
 							placeholder="Documento del cliente" th:field="*{documento}">
 					</div>
 
 					<div class="form-group">
-						<label for="nombre">Nombre</label> <input type="text"
-							class="form-control"
-							placeholder="Nombre de cliente" th:field="*{Nombre}">
+						<label for="nombre">Nombre</label> 
+						<input type="text" class="form-control" 
+							placeholder="Nombre de cliente" th:field="*{nombre}">
 					</div>
 
 					<div class="form-group">
-						<label for="direccion">fechaNacimiento</label> <input type="text"
-							class="form-control" 
+						<label for="direccion">fechaNacimiento</label> 
+						<input type="text" class="form-control" 
 							placeholder="Fecha de nacimiento" th:field="*{fechaNacimiento}">
 					</div>
 					
 					<div class="form-group">
-						<label for="direccion">fechaNacimiento</label> <input type="text"
-							class="form-control" 
+						<label for="direccion">fechaNacimiento</label> 
+						<input type="text" class="form-control" 
 							placeholder="Lugar de nacimiento" th:field="*{lugarNacimiento}">
 					</div>
 				
 					<div class="form-group">
-						<label for="telefono">Sexo</label> <input type="text"
-							class="form-control" 
+						<label for="telefono">Sexo</label> 
+						<input type="text" class="form-control" 
 							placeholder="sexo del cliente" th:field="*{sexo}">
 					</div>
 					
 					<div class="form-group">
-						<label for="telefono">Observacion</label> <input type="text"
-							class="form-control" 
+						<label for="telefono">Observacion</label> 
+						<input type="text" class="form-control" 
 							placeholder="Observacion del cliente" th:field="*{observacion}">
 					</div>
 					
 
-					<button type="submit" class="btn btn-primary">Grabar</button>
+					<button type="submit" class="btn btn-primary">Grabar
+					</button>
+					
+					<a th:href="@{/cliente}" class="btn btn-danger">
+					<i class="fas fa-undo"></i> Cancelar</a>
 				</form>
 			</div>
 		</div>
