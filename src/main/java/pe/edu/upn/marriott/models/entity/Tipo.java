@@ -32,6 +32,7 @@ public class Tipo {
 		this.habitaciones.add( habitacion );
 	}
 
+	
 	public String getId() {
 		return id;
 	}
