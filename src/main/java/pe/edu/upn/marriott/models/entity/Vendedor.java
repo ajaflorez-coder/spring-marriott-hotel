@@ -1,9 +1,15 @@
 package pe.edu.upn.marriott.models.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "vendedores")
@@ -28,9 +34,15 @@ public class Vendedor {
 	@Column(name = "sueldo")
 	private Float sueldo;
 	
-	
+	@OneToMany(mappedBy = "vendedor")
+	private List<Alquiler> alquileres;
 	
 	public Vendedor() {
+		alquileres = new ArrayList<>();
 		
+	}
+	public void addPaciente(Alquiler alquiler) {
+		alquiler.setVendedor(this);
+		this.alquileres.add(alquiler);
 	}
 }

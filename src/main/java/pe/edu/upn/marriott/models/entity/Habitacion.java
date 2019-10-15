@@ -1,5 +1,8 @@
 package pe.edu.upn.marriott.models.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -34,13 +38,18 @@ public class Habitacion {
 	@Column(name = "observacion", length = 100)
 	private String observacion;
 	
-	
+	@OneToMany(mappedBy = "habitacion")
+	private List<Alquiler> alquileres;
 	
 	public Habitacion() {
-		
+		alquileres = new ArrayList<>();
 	}
 
 
+	public void addPaciente(Alquiler alquiler) {
+		alquiler.setHabitacion(this);
+		this.alquileres.add(alquiler);
+	}
 
 	public Tipo getTipo() {
 		return tipo;
