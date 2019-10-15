@@ -27,11 +27,11 @@ public class Alquiler {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_entrada")	
-	private Date fechaEntrada;
+	private Date fecha_entrada;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_salida")	
-	private Date fechaSalida;
+	private Date fecha_salida;
 	
 	@Column(name = "estado")
 	private String estado;
@@ -74,23 +74,26 @@ public class Alquiler {
 	}
 
 
-	public Date getFechaEntrada() {
-		return fechaEntrada;
+	
+
+
+	public Date getFecha_entrada() {
+		return fecha_entrada;
 	}
 
 
-	public void setFechaEntrada(Date fechaEntrada) {
-		this.fechaEntrada = fechaEntrada;
+	public void setFecha_entrada(Date fecha_entrada) {
+		this.fecha_entrada = fecha_entrada;
 	}
 
 
-	public Date getFechaSalida() {
-		return fechaSalida;
+	public Date getFecha_salida() {
+		return fecha_salida;
 	}
 
 
-	public void setFechaSalida(Date fechaSalida) {
-		this.fechaSalida = fechaSalida;
+	public void setFecha_salida(Date fecha_salida) {
+		this.fecha_salida = fecha_salida;
 	}
 
 

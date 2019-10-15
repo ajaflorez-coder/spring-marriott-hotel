@@ -46,7 +46,10 @@ public class Habitacion {
 		alquileres = new ArrayList<>();
 	}
 
-
+	public void addAlquiler(Alquiler alquiler) {
+		alquiler.setHabitacion(this);
+		this.alquileres.add(alquiler);
+	}
 
 	public Tipo getTipo() {
 		return tipo;

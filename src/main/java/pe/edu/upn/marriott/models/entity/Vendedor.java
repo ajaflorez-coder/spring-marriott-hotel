@@ -36,6 +36,11 @@ public class Vendedor {
 	@OneToMany(mappedBy = "vendedor")
 	private List<Alquiler> alquileres;
 	
+	
+	public void addAlquiler(Alquiler alquiler) {
+		alquiler.setVendedor(this);
+		this.alquileres.add(alquiler);
+	}
 	public Vendedor() {
 		alquileres = new ArrayList<>();
 	}

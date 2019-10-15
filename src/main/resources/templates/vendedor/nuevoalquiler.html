@@ -6,54 +6,51 @@
 
 	<div class="container">
 
-		<h1>Edicion del Vendedor</h1>
+		<h1>Nuevo Alquiler</h1>
 
 		<div class="card">
-			<div class="card-header">Edicion médico</div>
+			<div class="card-header">Registro de nuevo alquilera</div>
 			<div class="card-body">
 
-				<form th:action="@{/vendedor/save}" th:object="${vendedor}" 
-					method="post">
+				<form th:action="@{/vendedor/savealquiler}" 
+					th:object="${alquiler}" method="post">
+					<div class="form-group">
+						<label for="precio">Precio:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Precio de alquiler"
+							th:field="*{precio}">
+					</div>
+					<div class="form-group">
+						<label for="fecha_entrada">Fecha de entrada:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Fecha de entrada"
+							th:field="*{fecha_entrada}">
+					</div>
+					<div class="form-group">
+						<label for="fecha_salida">Fecha de salida:</label> 
+						<input type="text" class="form-control" 
+							placeholder="Fecha de salida"
+							th:field="*{fecha_salida}">
+					</div>
 					
 					<div class="form-group">
-						<label for="nombre">Nombre:</label> 
+						<label for="estado">Estado:</label> 
 						<input type="text" class="form-control" 
-							placeholder="Nombre de Médico"
-							th:field="*{nombre}">
-					</div>
-					<div class="form-group">
-						<label for="direccion">Direccion:</label> 
-						<input type="text" class="form-control" 
-							placeholder="Direccion de Médico"
-							th:field="*{direccion}">
-					</div>
-					<div class="form-group">
-						<label for="telefono">Telefono:</label> 
-						<input type="text" class="form-control" 
-							placeholder="Telefono de Médico"
-							th:field="*{telefono}">
+							placeholder="Estado"
+							th:field="*{estado}">
 					</div>
 					<div class="form-group">
 						<label for="observacion">Observacion:</label> 
 						<input type="text" class="form-control" 
-							placeholder="Observacion de Médico"
+							placeholder="Observacion"
 							th:field="*{observacion}">
 					</div>
-					<div class="form-group">
-						<label for="sueldo">Sueldo:</label> 
-						<input type="text" class="form-control" 
-							placeholder="Sueldo de Médico"
-							th:field="*{sueldo}">
-					</div>
-					
-					
-					
 					
 					
 					<button type="submit" class="btn btn-primary">
 						<i class="fas fa-save"></i> Grabar
 					</button>
-					<a th:href="@{/vendedor}" class="btn btn-danger"> 
+					<a th:href="@{'/vendedor/' + '/info/' + ${vendedor.id}}" class="btn btn-danger"> 
 						<i class="fas fa-undo"></i> Cancelar 
 					</a>
 				</form>
