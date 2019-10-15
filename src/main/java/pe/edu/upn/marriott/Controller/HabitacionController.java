@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upn.marriott.models.entity.Alquiler;
@@ -22,6 +23,7 @@ import pe.edu.upn.marriott.services.TipoService;
 
 @Controller
 @RequestMapping("/habitacion") 
+@SessionAttributes({"habitacion","alquiler"})
 public class HabitacionController {
 	
 	@Autowired
@@ -37,23 +39,22 @@ public class HabitacionController {
 	public String inicio(Model model){
 		try {
 			List<Habitacion> habitaciones=habitacionService.findAll();
-			model.addAttribute("habitaciones",habitaciones); //en thymeleaf va el nombre que va en comillas
+			model.addAttribute("habitaciones",habitaciones);
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 		return "habitacion/inicio.html";
 	}
 	
-	@GetMapping("/editar/{id}")//("/edit/{id}/{id2}")
-	public String editar(@PathVariable("id") Integer id,Model model) {//editar(@PathVariable("id") Integer id,@PathVariable("id2") Integer id2,Model model) {
+	@GetMapping("/editar/{id}")
+	public String editar(@PathVariable("id") Integer id,Model model) {
 		try {
 			Optional<Habitacion>optional=habitacionService.findById(id);
 			if(optional.isPresent()) {
-				List<Alquiler> alquileres=alquilerService.findAll();
+				List<Tipo> tipos=tipoService.findAll();
 				model.addAttribute("habitaciones",optional.get());
-				model.addAttribute("alquileres",alquileres);
+				model.addAttribute("tipos",tipos);
 			}else {
-				return "redirect:/medico";
+				return "redirect:/habitacion";
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -76,6 +77,7 @@ public class HabitacionController {
 	@PostMapping("/guardar")
 	public String guardar(@ModelAttribute("habitaciones") Habitacion habitacion, Model model, SessionStatus status) {
 		try {
+			System.out.println(habitacion.getId());
 			habitacionService.save(habitacion);
 			status.setComplete();
 			model.addAttribute("success", "Habitacion guardado");
@@ -102,5 +104,50 @@ public class HabitacionController {
 			return "/habitacion/inicio";
 		}
 		return "redirect:/habitacion";
+	}
+	
+	@GetMapping("/info/{id}")
+	public String informacion(@PathVariable("id") Integer id, Model model) {
+		try {
+			Optional<Habitacion> habitacion=habitacionService.findById(id);
+			if(habitacion.isPresent()) {
+				model.addAttribute("habitaciones",habitacion.get());
+			}else {
+				return "redirect:/habitacion";
+			}
+		} catch (Exception e) {
+
+		}
+		return "/habitacion/info";
+	}
+	
+	@GetMapping("/{id}/nuevoalquiler")
+	public String nuevoAlquiler(@PathVariable("id")Integer id, Model model) {
+		Alquiler alquiler=new Alquiler();
+		try {
+			Optional<Habitacion> habitacion=habitacionService.findById(id);
+			if(habitacion.isPresent()) {
+				List<Habitacion> habitaciones=habitacionService.findAll();//
+				alquiler.setHabitacion(habitacion.get());
+				model.addAttribute("alquiler",alquiler);
+				model.addAttribute("habitaciones",habitaciones);//
+			}else {
+				return "redirect:/habitacion";
+			}
+		} catch (Exception e) {
+		}
+		return "/habitacion/nuevoalquiler";
+	}
+	
+	@PostMapping("/guardaralquiler")
+	public String guardarAlquiler(@ModelAttribute("alquileres") Alquiler alquiler, Model model, SessionStatus status) {
+		try {
+			alquilerService.save(alquiler);
+			status.setComplete();
+			model.addAttribute("success", "Alquiler guardado");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return "redirect:/habitacion/info/"+alquiler.getHabitacion().getId();
 	}
 }

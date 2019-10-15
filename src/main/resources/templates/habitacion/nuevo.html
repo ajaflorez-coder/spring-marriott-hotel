@@ -5,30 +5,30 @@
 	<header th:replace="layout/layout :: header"></header>
 	<div class="container">
 		<div class="card text-center">
-			<div class="card-header">Agregar nueva Habitacion</div>
+			<div class="card-header">Agregar datos de nueva Habitacion</div>
 			<div class="card-body-responsive">
 				<form th:action="@{/habitacion/guardar}" th:object="${habitaciones}" method="post">
 					<div class="form-group">
 						<label for="numeroCamas">NUMERO DE CAMAS</label>
-						<input type="text" class="form-control" placeholder="key cuevas" th:field="*{numeroCamas}">
+						<input type="number" min="0" max="5" class="form-control" placeholder="max 5 camas" th:field="*{numeroCamas}">
 					</div>
 					<div class="form-group">
 						<label for="descripcion">DESCRIPCION</label>
-						<input type="text" class="form-control" placeholder="cualquier cosa" th:field="*{descripcion}">
+						<input type="text" maxlength="100" class="form-control" placeholder="cualquier cosa" th:field="*{descripcion}">
 					</div>
 					<div class="form-group">
 						<label for="precio">PRECIO</label>
 						<input type="text" class="form-control" placeholder="200.80" th:field="*{precio}">
 					</div>
 					<div class="form-group">
-						<label for="especialidad">TIPO</label>
-						<select th:field="*{especialidad}" class="form-control">
-	                        <option th:each="especial:${especialidad}" th:value="${especial.id}" th:text="${especial.nombre}">San Narcos</option>
+						<label for="tipos">TIPO</label>
+						<select th:field="*{tipo}" class="form-control">
+	                        <option th:each="t:${tipos}" th:value="${t.id}" th:text="${t.nombre}"></option>
 	                    </select>
                     </div>
                     <div class="form-group">
-						<label for="observacion">PRECIO</label>
-						<input type="text" class="form-control" placeholder="observacion" th:field="*{observacion}">
+						<label for="observacion">OBSERVACION</label>
+						<input type="text" maxlength="100" class="form-control" placeholder="observacion" th:field="*{observacion}">
 					</div>
 					<button type="submit" class="btn btn-primary"><i class="fas fa-recycle"></i> Agregar</button>
 					<a th:href="@{/habitacion}" class="btn btn-danger"><i class="fas fa-trash"></i> Cancelar</a>

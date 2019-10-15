@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "alquileres")
 public class Alquiler {
@@ -26,10 +28,12 @@ public class Alquiler {
 	private Float precio;
 	
 	@Column(name="fecha_entrada")
+	@DateTimeFormat (pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date  fechaEntrada;
 	
 	@Column(name="fecha_salida")
+	@DateTimeFormat (pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date  fechaSalida;
 	
