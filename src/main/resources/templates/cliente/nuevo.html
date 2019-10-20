@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+
+
+
+
+
+		<div class="card">
+			<div class="card-header">Featured</div>
+			<div class="card-body">
+				<form th:action="@{/cliente/save}" th:object="${cliente}"
+					method="post">
+					<div class="form-row">
+
+						<div class="form-group col-md-2">
+							<label for="inputZip">Codigo del Cliente</label> <input type="text"
+								class="form-control" id="inputZip" th:field="*{id}"> <label
+								for="inputZip">Documento del Cliente</label> <input type="text"
+								class="form-control" id="inputZip" th:field="*{documento}">
+
+
+							<label for="inputZip">Nombre del Cliente</label> <input type="text"
+								class="form-control" id="inputZip" th:field="*{nombre}">
+							<label for="inputZip">fecha Nacimiento del Cliente</label> <input type="text"
+								class="form-control" id="inputZip" th:field="*{fechaNacimiento}">
+
+
+
+							<label for="inputZip">lugar Nacimiento del Clinte</label> <input type="text"
+								class="form-control" id="inputZip" th:field="*{lugarNacimiento}">
+
+
+
+							<label for="inputZip">sexo del cliente</label> <input type="text"
+								class="form-control" id="inputZip" th:field="*{sexo}"> 
+								
+								
+							<label for="inputZip">observacion del cliente</label> <input type="text"
+								class="form-control" id="inputZip" th:field="*{observacion}">
+						</div>
+
+					</div>
+					<button type="submit" class="btn btn-primary">Grabar</button>
+				</form>
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
